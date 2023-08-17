@@ -12,7 +12,7 @@
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
 </p>
 
-:rocket: :rocket: **This is the first version of VeighNa in English!** :rocket: :rocket:
+:rocket: :rocket: **This he first version of VeighNa in English!** :rocket: :rocket:
 
 VeighNa is a Python-based open source quantitative trading system development framework, in the open source community's continuous contribution to grow step by step into a multi-functional quantitative trading platform, since its release has accumulated a large number of users from financial institutions or related fields, including private equity funds, securities firms, futures companies and so on.
 
