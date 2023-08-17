@@ -1,10 +1,8 @@
-# VeighNa - By Traders, For Traders.
+# VeighNa in English - By Traders, For Traders.
 
 <p align="center">
   <img src = "https://vnpy.oss-cn-shanghai.aliyuncs.com/veighna-logo.png"/>
 </p
-
-💬 Want to read this in **chinese** ? Go [**here**](README_zh.md)
 
 <p align="center">
     <img src ="https://img.shields.io/badge/version-3.7.0-blueviolet.svg"/>
@@ -14,15 +12,11 @@
     <img src ="https://img.shields.io/github/license/vnpy/vnpy.svg?color=orange"/>
 </p>
 
+:rocket: :rocket: **This is the first version of VeighNa in English!** :rocket: :rocket:
+
 VeighNa is a Python-based open source quantitative trading system development framework, in the open source community's continuous contribution to grow step by step into a multi-functional quantitative trading platform, since its release has accumulated a large number of users from financial institutions or related fields, including private equity funds, securities firms, futures companies and so on.
 
-:rocket: :rocket: :rocket: **VeighNa Elite Quantitative Terminal for professional traders has been officially released, which provides perfect support for the needs of professional traders in terms of massive strategy concurrency, intelligent position shifting, algorithmic order splitting execution, and multi-account trading support. For more detailed information, please scan the QR code below and click [Community -> Elite Member Services] in the menu bar**:
-
-<p align="center">
-  <img src = "https://vnpy.oss-cn-shanghai.aliyuncs.com/vnpy_qr.jpg"/>
-</p
-
-If you have any questions in the process of using VeighNa for secondary development (strategies, modules, etc.), please check the [**VeighNa Project Documentation**](https://edarchimbaud.com/trading-platform-veighna), and if you can't solve it, please go to the [**Official Community Forum**](https://www. vnpy.com/forum/) for help, and you are welcome to share your experience in the [Experience Sharing] section!
+If you have any questions in the process of using VeighNa for secondary development (strategies, modules, etc.), please check the [**VeighNa Project Documentation**](https://edarchimbaud.com/trading-platform-veighna), and if you can't solve it, please go to the [**Official Community Forum**](https://www.vnpy.com/forum/) for help, and you are welcome to share your experience in the [Experience Sharing] section!
 
 For VeighNa's financial institution users, a special [VeighNa Institutional User Group] (QQ Group No.: 676499931) has been created to share issues related to institutional applications, such as: interbank market access, asset management O32 system, distributed deployment and other content. Please note that this group is only open to financial institution users, when adding the group, please specify: name - organization - department.
 
@@ -30,7 +24,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
 1. Multi-functional quantitative trading platform (trader), integrated with a variety of trading interfaces, and for the development of specific strategies algorithms and functions to provide a simple and easy to use API for the rapid construction of quantitative trading applications required by traders.
 
-2. Covering the following domestic and international trading varieties of trading interface (gateway):
+2. Covering the following trading brokers:
 
     * Domestic market
 
