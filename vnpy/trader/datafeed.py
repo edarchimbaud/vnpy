@@ -49,7 +49,7 @@ def get_datafeed() -> BaseDatafeed:
     try:
         module: ModuleType = import_module(module_name)
     except ModuleNotFoundError:
-        print(f"找不到数据服务驱动{module_name}，使用默认的RQData数据服务")
+        print(f"Data service driver {module_name} not found, using default RQData data service")
         module: ModuleType = import_module("vnpy_rqdata")
 
     # Create datafeed object from module

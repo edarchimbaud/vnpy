@@ -45,14 +45,14 @@ def main_terminal():
     rpc_engine = main_engine.add_app(RpcServiceApp)
 
     setting = {
-        "用户名": "",
-        "密码": "",
-        "经纪商代码": "9999",
-        "交易服务器": "180.168.146.187:10101",
-        "行情服务器": "180.168.146.187:10111",
-        "产品名称": "simnow_client_test",
-        "授权编码": "0000000000000000",
-        "产品信息": ""
+        "Username": "",
+        "Password": "",
+        "Broker's code": "9999",
+        "Trade server": "180.168.146.187:10101",
+        "Quotes server": "180.168.146.187:10111",
+        "Product name": "simnow_client_test",
+        "Authorization code": "0000000000000000",
+        "Product information": ""
     }
     main_engine.connect(setting, "CTP")
     sleep(10)

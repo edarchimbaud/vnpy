@@ -19,14 +19,14 @@ SETTINGS["log.console"] = True
 
 
 ctp_setting = {
-    "用户名": "",
-    "密码": "",
-    "经纪商代码": "",
-    "交易服务器": "",
-    "行情服务器": "",
-    "产品名称": "",
-    "授权编码": "",
-    "产品信息": ""
+    "Username": "",
+    "Password": "",
+    "Broker's code": "",
+    "Trade server": "",
+    "Quotes server": "",
+    "Product name": "",
+    "Authorization code": "",
+    "Product information": ""
 }
 
 
@@ -63,33 +63,33 @@ def run_child():
     main_engine = MainEngine(event_engine)
     main_engine.add_gateway(CtpGateway)
     cta_engine = main_engine.add_app(CtaStrategyApp)
-    main_engine.write_log("主引擎创建成功")
+    main_engine.write_log("Main engine created successfully")
 
     log_engine = main_engine.get_engine("log")
     event_engine.register(EVENT_CTA_LOG, log_engine.process_log_event)
-    main_engine.write_log("注册日志事件监听")
+    main_engine.write_log("Register log event listener")
 
     main_engine.connect(ctp_setting, "CTP")
-    main_engine.write_log("连接CTP接口")
+    main_engine.write_log("Connecting CTP interface")
 
     sleep(10)
 
     cta_engine.init_engine()
-    main_engine.write_log("CTA策略初始化完成")
+    main_engine.write_log("CTA strategy initialization complete")
 
     cta_engine.init_all_strategies()
     sleep(60)   # Leave enough time to complete strategy initialization
-    main_engine.write_log("CTA策略全部初始化")
+    main_engine.write_log("CTA strategy all initialized")
 
     cta_engine.start_all_strategies()
-    main_engine.write_log("CTA策略全部启动")
+    main_engine.write_log("CTA strategies all started")
 
     while True:
         sleep(10)
 
         trading = check_trading_period()
         if not trading:
-            print("关闭子进程")
+            print("Shutting down child processes")
             main_engine.close()
             sys.exit(0)
 
@@ -98,7 +98,7 @@ def run_parent():
     """
     Running in the parent process.
     """
-    print("启动CTA策略守护父进程")
+    print("Starting CTA strategy daemon parent process")
 
     child_process = None
 
@@ -107,16 +107,16 @@ def run_parent():
 
         # Start child process in trading period
         if trading and child_process is None:
-            print("启动子进程")
+            print("Starting sub-processes")
             child_process = multiprocessing.Process(target=run_child)
             child_process.start()
-            print("子进程启动成功")
+            print("Child process started successfully")
 
-        # 非记录时间则退出子进程
+        # Exit sub-processes at non-recorded times
         if not trading and child_process is not None:
             if not child_process.is_alive():
                 child_process = None
-                print("子进程关闭成功")
+                print("Child process shutdown successful")
 
         sleep(5)
 

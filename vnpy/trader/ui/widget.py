@@ -243,11 +243,11 @@ class BaseMonitor(QtWidgets.QTableWidget):
         """
         self.menu: QtWidgets.QMenu = QtWidgets.QMenu(self)
 
-        resize_action: QtGui.QAction = QtWidgets.QAction("调整列宽", self)
+        resize_action: QtGui.QAction = QtWidgets.QAction("Adjust column width", self)
         resize_action.triggered.connect(self.resize_columns)
         self.menu.addAction(resize_action)
 
-        save_action: QtGui.QAction = QtWidgets.QAction("保存数据", self)
+        save_action: QtGui.QAction = QtWidgets.QAction("Save data", self)
         save_action.triggered.connect(self.save_csv)
         self.menu.addAction(save_action)
 
@@ -327,7 +327,7 @@ class BaseMonitor(QtWidgets.QTableWidget):
         Save table data into a csv file
         """
         path, _ = QtWidgets.QFileDialog.getSaveFileName(
-            self, "保存数据", "", "CSV(*.csv)")
+            self, "Save data", "", "CSV(*.csv)")
 
         if not path:
             return
@@ -382,20 +382,20 @@ class TickMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "symbol": {"display": "代码", "cell": BaseCell, "update": False},
-        "exchange": {"display": "交易所", "cell": EnumCell, "update": False},
-        "name": {"display": "名称", "cell": BaseCell, "update": True},
-        "last_price": {"display": "最新价", "cell": BaseCell, "update": True},
-        "volume": {"display": "成交量", "cell": BaseCell, "update": True},
-        "open_price": {"display": "开盘价", "cell": BaseCell, "update": True},
-        "high_price": {"display": "最高价", "cell": BaseCell, "update": True},
-        "low_price": {"display": "最低价", "cell": BaseCell, "update": True},
-        "bid_price_1": {"display": "买1价", "cell": BidCell, "update": True},
-        "bid_volume_1": {"display": "买1量", "cell": BidCell, "update": True},
-        "ask_price_1": {"display": "卖1价", "cell": AskCell, "update": True},
-        "ask_volume_1": {"display": "卖1量", "cell": AskCell, "update": True},
-        "datetime": {"display": "时间", "cell": TimeCell, "update": True},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "symbol": {"display": "Symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "Exchange", "cell": EnumCell, "update": False},
+        "name": {"display": "Name", "cell": BaseCell, "update": True},
+        "last_price": {"display": "Last price", "cell": BaseCell, "update": True},
+        "volume": {"display": "Volume", "cell": BaseCell, "update": True},
+        "open_price": {"display": "Open price", "cell": BaseCell, "update": True},
+        "high_price": {"display": "High price", "cell": BaseCell, "update": True},
+        "low_price": {"display": "Low price", "cell": BaseCell, "update": True},
+        "bid_price_1": {"display": "Bid price", "cell": BidCell, "update": True},
+        "bid_volume_1": {"display": "Bid volume", "cell": BidCell, "update": True},
+        "ask_price_1": {"display": "Ask price", "cell": AskCell, "update": True},
+        "ask_volume_1": {"display": "Ask volume", "cell": AskCell, "update": True},
+        "datetime": {"display": "Datetime", "cell": TimeCell, "update": True},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
 
@@ -409,9 +409,9 @@ class LogMonitor(BaseMonitor):
     sorting: bool = False
 
     headers: dict = {
-        "time": {"display": "时间", "cell": TimeCell, "update": False},
-        "msg": {"display": "信息", "cell": MsgCell, "update": False},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "time": {"display": "Datetime", "cell": TimeCell, "update": False},
+        "msg": {"display": "Message", "cell": MsgCell, "update": False},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
 
@@ -425,16 +425,16 @@ class TradeMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "tradeid": {"display": "成交号 ", "cell": BaseCell, "update": False},
-        "orderid": {"display": "委托号", "cell": BaseCell, "update": False},
-        "symbol": {"display": "代码", "cell": BaseCell, "update": False},
-        "exchange": {"display": "交易所", "cell": EnumCell, "update": False},
-        "direction": {"display": "方向", "cell": DirectionCell, "update": False},
-        "offset": {"display": "开平", "cell": EnumCell, "update": False},
-        "price": {"display": "价格", "cell": BaseCell, "update": False},
-        "volume": {"display": "数量", "cell": BaseCell, "update": False},
-        "datetime": {"display": "时间", "cell": TimeCell, "update": False},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "tradeid": {"display": "Trade ID", "cell": BaseCell, "update": False},
+        "orderid": {"display": "Order ID", "cell": BaseCell, "update": False},
+        "symbol": {"display": "Symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "Exchange", "cell": EnumCell, "update": False},
+        "direction": {"display": "Direction", "cell": DirectionCell, "update": False},
+        "offset": {"display": "Offset", "cell": EnumCell, "update": False},
+        "price": {"display": "Price", "cell": BaseCell, "update": False},
+        "volume": {"display": "Volume", "cell": BaseCell, "update": False},
+        "datetime": {"display": "Datetime", "cell": TimeCell, "update": False},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
 
@@ -448,19 +448,19 @@ class OrderMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "orderid": {"display": "委托号", "cell": BaseCell, "update": False},
-        "reference": {"display": "来源", "cell": BaseCell, "update": False},
-        "symbol": {"display": "代码", "cell": BaseCell, "update": False},
-        "exchange": {"display": "交易所", "cell": EnumCell, "update": False},
-        "type": {"display": "类型", "cell": EnumCell, "update": False},
-        "direction": {"display": "方向", "cell": DirectionCell, "update": False},
-        "offset": {"display": "开平", "cell": EnumCell, "update": False},
-        "price": {"display": "价格", "cell": BaseCell, "update": False},
-        "volume": {"display": "总数量", "cell": BaseCell, "update": True},
-        "traded": {"display": "已成交", "cell": BaseCell, "update": True},
-        "status": {"display": "状态", "cell": EnumCell, "update": True},
-        "datetime": {"display": "时间", "cell": TimeCell, "update": True},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "orderid": {"display": "Order ID", "cell": BaseCell, "update": False},
+        "reference": {"display": "Reference", "cell": BaseCell, "update": False},
+        "symbol": {"display": "Symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "Exchange", "cell": EnumCell, "update": False},
+        "type": {"display": "Type", "cell": EnumCell, "update": False},
+        "direction": {"display": "Direction", "cell": DirectionCell, "update": False},
+        "offset": {"display": "Offset", "cell": EnumCell, "update": False},
+        "price": {"display": "Price", "cell": BaseCell, "update": False},
+        "volume": {"display": "Total volume", "cell": BaseCell, "update": True},
+        "traded": {"display": "Traded", "cell": BaseCell, "update": True},
+        "status": {"display": "Status", "cell": EnumCell, "update": True},
+        "datetime": {"display": "Datetime", "cell": TimeCell, "update": True},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
     def init_ui(self) -> None:
@@ -469,7 +469,7 @@ class OrderMonitor(BaseMonitor):
         """
         super().init_ui()
 
-        self.setToolTip("双击单元格撤单")
+        self.setToolTip("Double-click cell to undo")
         self.itemDoubleClicked.connect(self.cancel_order)
 
     def cancel_order(self, cell: BaseCell) -> None:
@@ -491,15 +491,15 @@ class PositionMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "symbol": {"display": "代码", "cell": BaseCell, "update": False},
-        "exchange": {"display": "交易所", "cell": EnumCell, "update": False},
-        "direction": {"display": "方向", "cell": DirectionCell, "update": False},
-        "volume": {"display": "数量", "cell": BaseCell, "update": True},
-        "yd_volume": {"display": "昨仓", "cell": BaseCell, "update": True},
-        "frozen": {"display": "冻结", "cell": BaseCell, "update": True},
-        "price": {"display": "均价", "cell": BaseCell, "update": True},
-        "pnl": {"display": "盈亏", "cell": PnlCell, "update": True},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "symbol": {"display": "Symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "Exchange", "cell": EnumCell, "update": False},
+        "direction": {"display": "Direction", "cell": DirectionCell, "update": False},
+        "volume": {"display": "Volume", "cell": BaseCell, "update": True},
+        "yd_volume": {"display": "YD volume", "cell": BaseCell, "update": True},
+        "frozen": {"display": "Frozen", "cell": BaseCell, "update": True},
+        "price": {"display": "Price", "cell": BaseCell, "update": True},
+        "pnl": {"display": "PnL", "cell": PnlCell, "update": True},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
 
@@ -513,11 +513,11 @@ class AccountMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "accountid": {"display": "账号", "cell": BaseCell, "update": False},
-        "balance": {"display": "余额", "cell": BaseCell, "update": True},
-        "frozen": {"display": "冻结", "cell": BaseCell, "update": True},
-        "available": {"display": "可用", "cell": BaseCell, "update": True},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "accountid": {"display": "Account ID", "cell": BaseCell, "update": False},
+        "balance": {"display": "Balance", "cell": BaseCell, "update": True},
+        "frozen": {"display": "Frozen", "cell": BaseCell, "update": True},
+        "available": {"display": "Available", "cell": BaseCell, "update": True},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
 
@@ -531,19 +531,19 @@ class QuoteMonitor(BaseMonitor):
     sorting: bool = True
 
     headers: dict = {
-        "quoteid": {"display": "报价号", "cell": BaseCell, "update": False},
-        "reference": {"display": "来源", "cell": BaseCell, "update": False},
-        "symbol": {"display": "代码", "cell": BaseCell, "update": False},
-        "exchange": {"display": "交易所", "cell": EnumCell, "update": False},
-        "bid_offset": {"display": "买开平", "cell": EnumCell, "update": False},
-        "bid_volume": {"display": "买量", "cell": BidCell, "update": False},
-        "bid_price": {"display": "买价", "cell": BidCell, "update": False},
-        "ask_price": {"display": "卖价", "cell": AskCell, "update": False},
-        "ask_volume": {"display": "卖量", "cell": AskCell, "update": False},
-        "ask_offset": {"display": "卖开平", "cell": EnumCell, "update": False},
-        "status": {"display": "状态", "cell": EnumCell, "update": True},
-        "datetime": {"display": "时间", "cell": TimeCell, "update": True},
-        "gateway_name": {"display": "接口", "cell": BaseCell, "update": False},
+        "quoteid": {"display": "Quote ID", "cell": BaseCell, "update": False},
+        "reference": {"display": "Reference", "cell": BaseCell, "update": False},
+        "symbol": {"display": "Symbol", "cell": BaseCell, "update": False},
+        "exchange": {"display": "Exchange", "cell": EnumCell, "update": False},
+        "bid_offset": {"display": "Bid offset", "cell": EnumCell, "update": False},
+        "bid_volume": {"display": "Bid volume", "cell": BidCell, "update": False},
+        "bid_price": {"display": "Bid price", "cell": BidCell, "update": False},
+        "ask_price": {"display": "Ask price", "cell": AskCell, "update": False},
+        "ask_volume": {"display": "Ask volume", "cell": AskCell, "update": False},
+        "ask_offset": {"display": "Ask offset", "cell": EnumCell, "update": False},
+        "status": {"display": "Status", "cell": EnumCell, "update": True},
+        "datetime": {"display": "Datetime", "cell": TimeCell, "update": True},
+        "gateway_name": {"display": "Gateway name", "cell": BaseCell, "update": False},
     }
 
     def init_ui(self):
@@ -552,7 +552,7 @@ class QuoteMonitor(BaseMonitor):
         """
         super().init_ui()
 
-        self.setToolTip("双击单元格撤销报价")
+        self.setToolTip("Double click cell to undo quote")
         self.itemDoubleClicked.connect(self.cancel_quote)
 
     def cancel_quote(self, cell: BaseCell) -> None:
@@ -583,7 +583,7 @@ class ConnectDialog(QtWidgets.QDialog):
 
     def init_ui(self) -> None:
         """"""
-        self.setWindowTitle(f"连接{self.gateway_name}")
+        self.setWindowTitle(f"Connect to {self.gateway_name}")
 
         # Default setting provides field name, field data type and field default value.
         default_setting: dict = self.main_engine.get_default_setting(
@@ -613,7 +613,7 @@ class ConnectDialog(QtWidgets.QDialog):
                     saved_value = loaded_setting[field_name]
                     widget.setText(str(saved_value))
 
-                if "密码" in field_name:
+                if "Password" in field_name:
                     widget.setEchoMode(QtWidgets.QLineEdit.Password)
 
                 if field_type == int:
@@ -623,7 +623,7 @@ class ConnectDialog(QtWidgets.QDialog):
             form.addRow(f"{field_name} <{field_type.__name__}>", widget)
             self.widgets[field_name] = (widget, field_type)
 
-        button: QtWidgets.QPushButton = QtWidgets.QPushButton("连接")
+        button: QtWidgets.QPushButton = QtWidgets.QPushButton("Connect")
         button.clicked.connect(self.connect)
         form.addRow(button)
 
@@ -710,24 +710,24 @@ class TradingWidget(QtWidgets.QWidget):
         self.gateway_combo.addItems(self.main_engine.get_all_gateway_names())
 
         self.price_check: QtWidgets.QCheckBox = QtWidgets.QCheckBox()
-        self.price_check.setToolTip("设置价格随行情更新")
+        self.price_check.setToolTip("Set price to update with quote")
 
-        send_button: QtWidgets.QPushButton = QtWidgets.QPushButton("委托")
+        send_button: QtWidgets.QPushButton = QtWidgets.QPushButton("Send")
         send_button.clicked.connect(self.send_order)
 
-        cancel_button: QtWidgets.QPushButton = QtWidgets.QPushButton("全撤")
+        cancel_button: QtWidgets.QPushButton = QtWidgets.QPushButton("Cancel")
         cancel_button.clicked.connect(self.cancel_all)
 
         grid: QtWidgets.QGridLayout = QtWidgets.QGridLayout()
-        grid.addWidget(QtWidgets.QLabel("交易所"), 0, 0)
-        grid.addWidget(QtWidgets.QLabel("代码"), 1, 0)
-        grid.addWidget(QtWidgets.QLabel("名称"), 2, 0)
-        grid.addWidget(QtWidgets.QLabel("方向"), 3, 0)
-        grid.addWidget(QtWidgets.QLabel("开平"), 4, 0)
-        grid.addWidget(QtWidgets.QLabel("类型"), 5, 0)
-        grid.addWidget(QtWidgets.QLabel("价格"), 6, 0)
-        grid.addWidget(QtWidgets.QLabel("数量"), 7, 0)
-        grid.addWidget(QtWidgets.QLabel("接口"), 8, 0)
+        grid.addWidget(QtWidgets.QLabel("Exchange"), 0, 0)
+        grid.addWidget(QtWidgets.QLabel("Symbol"), 1, 0)
+        grid.addWidget(QtWidgets.QLabel("Name"), 2, 0)
+        grid.addWidget(QtWidgets.QLabel("Direction"), 3, 0)
+        grid.addWidget(QtWidgets.QLabel("Offset"), 4, 0)
+        grid.addWidget(QtWidgets.QLabel("Type"), 5, 0)
+        grid.addWidget(QtWidgets.QLabel("Price"), 6, 0)
+        grid.addWidget(QtWidgets.QLabel("Volume"), 7, 0)
+        grid.addWidget(QtWidgets.QLabel("Gateway name"), 8, 0)
         grid.addWidget(self.exchange_combo, 0, 1, 1, 2)
         grid.addWidget(self.symbol_line, 1, 1, 1, 2)
         grid.addWidget(self.name_line, 2, 1, 1, 2)
@@ -942,12 +942,12 @@ class TradingWidget(QtWidgets.QWidget):
         """
         symbol: str = str(self.symbol_line.text())
         if not symbol:
-            QtWidgets.QMessageBox.critical(self, "委托失败", "请输入合约代码")
+            QtWidgets.QMessageBox.critical(self, "Order failed", "Please enter contract Symbol")
             return
 
         volume_text: str = str(self.volume_line.text())
         if not volume_text:
-            QtWidgets.QMessageBox.critical(self, "委托失败", "请输入委托数量")
+            QtWidgets.QMessageBox.critical(self, "Order failed", "Please enter the number of contracts")
             return
         volume: float = float(volume_text)
 
@@ -1039,15 +1039,15 @@ class ContractManager(QtWidgets.QWidget):
     """
 
     headers: Dict[str, str] = {
-        "vt_symbol": "本地代码",
-        "symbol": "代码",
-        "exchange": "交易所",
-        "name": "名称",
-        "product": "合约分类",
-        "size": "合约乘数",
-        "pricetick": "价格跳动",
-        "min_volume": "最小委托量",
-        "gateway_name": "交易接口",
+        "vt_symbol": "Local Symbol",
+        "symbol": "Symbol",
+        "exchange": "Exchange",
+        "name": "Name",
+        "product": "Contract classification",
+        "size": "Contract Multiplier",
+        "pricetick": "Price Tick",
+        "min_volume": "Minimum Order Quantity",
+        "gateway_name": "Gateway Name",
     }
 
     def __init__(self, main_engine: MainEngine, event_engine: EventEngine) -> None:
@@ -1060,13 +1060,13 @@ class ContractManager(QtWidgets.QWidget):
 
     def init_ui(self) -> None:
         """"""
-        self.setWindowTitle("合约查询")
+        self.setWindowTitle("Contract Query")
         self.resize(1000, 600)
 
         self.filter_line: QtWidgets.QLineEdit = QtWidgets.QLineEdit()
-        self.filter_line.setPlaceholderText("输入合约代码或者交易所，留空则查询所有合约")
+        self.filter_line.setPlaceholderText("Enter contract code or exchange, leave it blank to query all contracts")
 
-        self.button_show: QtWidgets.QPushButton = QtWidgets.QPushButton("查询")
+        self.button_show: QtWidgets.QPushButton = QtWidgets.QPushButton("Query")
         self.button_show.clicked.connect(self.show_contracts)
 
         labels: list = []
@@ -1136,7 +1136,7 @@ class AboutDialog(QtWidgets.QDialog):
 
     def init_ui(self) -> None:
         """"""
-        self.setWindowTitle("关于VeighNa Trader")
+        self.setWindowTitle("About VeighNa Trader")
 
         from ... import __version__ as vnpy_version
 
@@ -1146,9 +1146,9 @@ class AboutDialog(QtWidgets.QDialog):
             Created by VeighNa Technology
 
 
-            License：MIT
-            Website：www.vnpy.com
-            Github：www.github.com/vnpy/vnpy
+            License: MIT
+            Website: www.vnpy.com
+            Github: www.github.com/vnpy/vnpy
 
 
             VeighNa - {vnpy_version}
@@ -1182,7 +1182,7 @@ class GlobalDialog(QtWidgets.QDialog):
 
     def init_ui(self) -> None:
         """"""
-        self.setWindowTitle("全局配置")
+        self.setWindowTitle("Global Configuration")
         self.setMinimumWidth(800)
 
         settings: dict = copy(SETTINGS)
@@ -1198,7 +1198,7 @@ class GlobalDialog(QtWidgets.QDialog):
             form.addRow(f"{field_name} <{field_type.__name__}>", widget)
             self.widgets[field_name] = (widget, field_type)
 
-        button: QtWidgets.QPushButton = QtWidgets.QPushButton("确定")
+        button: QtWidgets.QPushButton = QtWidgets.QPushButton("OK")
         button.clicked.connect(self.update_setting)
         form.addRow(button)
 
@@ -1234,8 +1234,8 @@ class GlobalDialog(QtWidgets.QDialog):
 
         QtWidgets.QMessageBox.information(
             self,
-            "注意",
-            "全局配置的修改需要重启后才会生效！",
+            "Warning",
+            "Global configuration changes require a reboot to take effect!",
             QtWidgets.QMessageBox.Ok
         )
 
