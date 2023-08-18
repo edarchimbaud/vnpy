@@ -272,10 +272,10 @@ VeighNa uses Github to host its source code, if you wish to contribute code plea
 
 2. Fork [VeighNa](https://github.com/vnpy/vnpy) - Click the **Fork** button in the upper right corner.
 
-3. Clone your own fork: ```git clone https://github.com/$userid/vnpy.git``''
-	* If your fork is outdated, you need to sync it manually: [sync method](https://help.github.com/articles/syncing-a-fork/)
+3. Clone your own fork: ```git clone https://github.com/$userid/vnpy.git```.
+    * If your fork is outdated, you need to sync it manually: [sync method](https://help.github.com/articles/syncing-a-fork/)
 
-4. Create your own feature branch from **dev**: ```git checkout -b $my_feature_branch dev``` * If your fork is out of date, you need to sync it manually: [sync method]()
+4. Create your own feature branch from **dev**: ```git checkout -b $my_feature_branch dev```.
 
 5. Make changes to $my_feature_branch and push them to your fork.
 
@@ -285,7 +285,7 @@ VeighNa uses Github to host its source code, if you wish to contribute code plea
 
 When submitting code, please observe the following rules to improve code quality:
 
-  * Check your code with [flake8](https://pypi.org/project/flake8/) to make sure there are no errors and warnings. just run ```flake8`` in the project root directory.
+  * Check your code with [flake8](https://pypi.org/project/flake8/) to make sure there are no errors and warnings. just run ```flake8``` in the project root directory.
 
 ## Other content
 
