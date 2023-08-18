@@ -1,192 +1,192 @@
-# DataManager - 历史数据管理模块
+# DataManager - Historical Data Management Module
 
-## 功能简介
+## Introduction
 
-DataManager是用于**历史数据管理**的功能模块，用户可以通过其UI界面操作来便捷完成数据下载、数据查看、数据导入和数据导出等任务。
+DataManager is a functional module for **historical data management**, which allows users to conveniently accomplish tasks such as data download, data viewing, data import and data export through its UI interface.
 
-## 加载启动
+## Loading and Starting
 
-### VeighNa Station加载
+### Loading VeighNa Station
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【DataManager】。
+After logging in to VeighNa Station, click the [Transaction] button and check [DataManager] in the [Application Module] column of the configuration dialog box.
 
-### 脚本加载
+### Script Loading
 
-在启动脚本中添加如下代码：
+Add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+### Write it at the top
 from vnpy_datamanager import DataManagerApp
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_app(DataManagerApp)
-```
+``
 
 
-## 启动模块
+## Start the module
 
-启动VeighNa Trader后，在菜单栏中点击【功能】-> 【数据管理】，或者点击左侧按钮栏的图标：
+After starting VeighNa Trader, click [Functions] -> [DataManager] in the menu bar, or click the icon in the left button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/00.png)
 
-即可进入历史数据管理UI界面，如下图所示：
+You can enter the historical data management UI interface, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/1.png)
 
 
-## 下载数据
+## Download Data
 
-DataManager模块提供了一键下载历史数据的功能，点击右上角【下载数据】按钮，会弹出下载历史数据窗口，如下图所示：
+DataManager module provides the function of downloading historical data with one click, click the [Download Data] button in the upper right corner, the window of downloading historical data will pop up, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/2.png)
 
-需要填写代码、交易所、周期以及开始日期四个字段信息：
+You need to fill in the four fields of code, exchange, period and start date information:
 
 <span id="jump">
 
-- 代码
-  - 代码格式为合约品种
-  - 如IF888、rb2105
-- 交易所
-  - 合约交易的交易所（点击窗口右侧箭头按钮可选择VeighNa支持的交易所列表）
-- 周期
-  - MINUTE（1分钟K线）
-  - HOUR（1小时K线）
-  - DAILY（日K线）
-  - WEEKLY（周K线）
+- Code
+  - Code format for contract type
+  - Such as IF888, rb2105
+- Exchange
+  - Exchange on which the contract is traded (click the arrow button on the right side of the window to select the list of exchanges supported by VeighNa)
+- PERIOD
+  - MINUTE (1 minute K-line)
+  - HOUR (1 hour K-line)
+  - DAILY
+  - WEEKLY
   - TICK（一个Tick）
-- 开始日期
-  - 格式为yy/mm/dd
-  - 如2018/2/25
+- Start date
+  - Format yyyy/mm/dd
+  - e.g. 2018/2/25
 
 </span>
 
-填写完成后，点击下方【下载】按钮启动下载程序，下载成功如下图所示：
+Fill in the completion, click the following [Download] button to start the download process, download successfully as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/3.png)
 
-注意下载完成后的历史数据会保存在本地数据库中，后续回测或实盘时可以直接使用，无需每次都重复下载。
+Note that the historical data will be saved in the local database after the download is completed, and can be used directly in subsequent backtests or real trading, without having to repeat the download each time.
 
-### 数据来源：数据服务（期货、股票、期权）
+### Data source: data services (futures, stocks, options)
 
-以RQData为例，[RQData](https://www.ricequant.com/welcome/purchase?utm_source=vnpy)提供国内期货、股票以及期权的历史数据。在使用前需要保证数据服务已经正确配置（配置方法详见基本使用篇的全局配置部分）。
+Take RQData as an example, [RQData](https://www.ricequant.com/welcome/purchase?utm_source=vnpy) provides historical data of domestic futures, stocks and options. Before using it, you need to ensure that the data service has been configured correctly (see the Global Configuration section of the Basic Usage chapter for details on how to configure it).
 
-### 数据来源：IB（外盘期货、股票、现货等）
+### Data source: IB (foreign futures, stocks, spot, etc.)
 
-Interactive Brokers盈透证券（IB）提供丰富的外盘市场历史数据下载（包括股票、期货、期权、现货等），注意下载前需要先启动IB TWS交易软件，并在VeighNa Trader主界面连接好IB接口，并订阅所需合约行情。
+Interactive Brokers (IB) provides a wealth of foreign market historical data download (including stocks, futures, options, spot, etc.), note that you need to start the IB TWS trading software, and in the VeighNa Trader main interface to connect to the IB interface, and subscribe to the required contract quotes.
 
 
-## 导入数据
+## Importing Data
 
-如果已经从其他渠道获取到了CSV格式的数据文件，可以通过DataManager的数据导入功能，将其快速导入VeighNa数据库。点击右上角的【导入数据】按钮，会弹出从如下图所示的对话框：
+If you have already obtained the data file in CSV format from other sources, you can quickly import it into the VeighNa database by using the Data Import function of DataManager. Click the [Import Data] button in the upper right corner, a dialog box will pop up from the one shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/21.png)
 
-点击顶部的【选择文件】按钮，会弹出窗口选择要导入的CSV文件路径，如下图所示：
+Click the [Select File] button at the top, a pop-up window will appear to select the path of the CSV file to be imported, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/5.png)
 
-然后配置数据导入的相关细节：
+Then configure the relevant details of data import:
 
-- 合约信息
-  - 格式详见本章[下载数据](#jump)部分的介绍；
-  - 请注意，导入的合约代码（symbol）和交易所（exchange）两个字段组合起来，才能构成在CTA回测等模块中使用的本地代码（vt_symbol）；
-  - 若合约代码为**IF2003**，交易所选择**CFFEX**（中金所），则在CtaBacktester中回测要用到的本地代码应为**IF2003.CFFEX**；
-  - 可以对时间戳时区进行选择；
-- 表头信息
-  - 可查看CSV文件的表头信息，并将对应的表头字符串输入在表头信息中；
-  - 对于CSV文件中不存在的字段（如股票数据没有【持仓量】字段），请留空即可；
-- 格式信息
-  - 采用Python内置库datetime模块的时间格式定义，来解析时间戳字符串；
-  - 默认时间格式为"%Y-%m-%d %H:%M:%S"，对应的是"2017-1-3 0:00:00"；
-  - 如果时间戳是"2017-1-3  0:00"，那么时间格式应该是"%Y-%m-%d %H:%M"。
+- Contract Information
+  - The format is described in the [Download Data](#jump) section of this chapter;
+  - Please note that the imported contract code (symbol) and exchange (exchange) fields are combined to form the local code (vt_symbol) used in modules such as CTA backtesting;
+  - If the contract code is **IF2003** and the exchange is **CFFEX** (CFFEX), the local code to be used for backtesting in CtaBacktester should be **IF2003.CFFEX**;
+  - The timestamp time zone can be selected;
+- Table header information
+  - You can view the header information of the CSV file and enter the corresponding header string in the header information;
+  - For fields that do not exist in the CSV file (e.g., there is no [Position] field for stock data), please just leave them blank;
+- Formatting Information
+  - The time format definition of Python built-in library datetime module is used to parse the timestamp string;
+  - The default time format is "%Y-%m-%d %H:%M:%S", which corresponds to "2017-1-3 0:00:00";
+  - If the timestamp is "2017-1-3 0:00", then the time format should be "%Y-%m-%d %H:%M".
 
-填写完毕，则如下图所示：
+When you have finished filling in the form, it is shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/22.png)
 
-点击【确定】按钮，开始从CSV文件导入数据到数据库中。导入过程中界面会处于半卡住的情况，CSV文件越大（数据量越多），卡住的时间也会越长。成功载入之后，会弹出窗口显示载入成功，如下图所示：
+Click the [OK] button to start importing data from the CSV file to the database. The interface will be half stuck during the import process, the larger the CSV file (the more data), the longer the stuck time will be. After successful loading, a pop-up window will appear to show that the loading was successful, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/20.png)
 
 
-## 查看数据
+## Viewing Data
 
-目前VeighNa Trader中获取数据的方式一共有三种：
+Currently there are three ways to get data in VeighNa Trader:
 
-- 通过数据服务或者交易接口下载
+- Downloading data through the data service or trading interface
 
-- 从CSV文件导入
+- Import from CSV file
 
-- 使用DataRecorder模块录制
+- Recording with the DataRecorder module
 
-不管采用何种方法获取数据，点击左上角的【刷新】按钮，即可看到当前数据库中已有数据的统计情况（Tick数据除外）。刷新过程中界面可能会有偶尔的卡顿，通常对于越多的数据，卡顿的时间也会越长。刷新成功之后，如下图所示：
+Regardless of the method used to obtain data, click the [Refresh] button in the upper left corner to see the statistics of the data currently in the database (except Tick data). During the refresh process, the interface may have occasional lag, usually for the more data, the longer the lag time will be. After the refresh is successful, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/7.png)
 
-点击【查看】按钮，则会弹出选择数据要查看数据区间的对话框，如下图所示：
+Click the [View] button, a dialog box will pop up to select the data interval to view, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/10.png)
 
-选择好要显示的数据范围后，点击【确定】按钮即可在右侧表格中看到每个时间点上具体的数据字段：
+After selecting the data range to be displayed, click the [OK] button to see the specific data fields at each point in time in the table on the right:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/11.png)
 
-在数据库已有数据的前提下，点击表格最左侧【数据】列下的数据频率前的小箭头，则可展开或收起该数据频率下的合约信息显示。
+Provided that the database already has data, click on the small arrow in front of the data frequency under the [Data] column on the leftmost side of the table to expand or collapse the display of contract information under that data frequency.
 
-若表格的右侧区域显示不完整，可拖动界面底端的横向滚动条进行调整。
+If the display on the right side of the table is incomplete, you can adjust it by dragging the horizontal scroll bar at the bottom of the interface.
 
 
-## 导出数据
+## Export Data
 
-如果想导出数据库中的数据到本地CSV文件，则可选择要导出的合约，点击该合约所在行右侧的【导出】按钮后，会弹出选择数据区间对话框，如下图所示：
+If you want to export the data in the database to a local CSV file, you can select the contract you want to export and click the [Export] button on the right side of the row where the contract is located to bring up the Select Data Interval dialog box, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/8.png)
 
-选择要导出的数据区间范围，点击【确定】后，会再次弹出对话框选择输出文件的位置，如下图所示：
+Select the range of the data interval to be exported and click [OK], a dialog box will pop up again to select the location of the output file, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/9.png)
 
-选择好导出文件要放置的目录，填写完CSV文件名之后，点击【保存】按钮即可完成CSV文件的导出。
+Select the directory where you want to place the exported file, and after filling in the CSV file name, click the [Save] button to finish exporting the CSV file.
 
 
-## 删除数据
+## Delete Data
 
-若想删除特定合约数据，则可选择要删除的合约，点击该合约行数据右侧的【删除】按钮后，会弹出对话框，如下图所示：
+If you want to delete specific contract data, you can select the contract to be deleted and click the [Delete] button on the right side of the contract row data, a dialog box will pop up, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/12.png)
 
-点击【OK】按钮即可删除该合约数据，并弹出删除成功窗口，如下图所示：
+Click the [OK] button to delete the contract data, and the Delete Success window will pop up, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/13.png)
 
-此时再点击【刷新】按钮，图形界面上已经没有该合约的信息了，如下图所示：
+At this time, click the [Refresh] button again, there is no more information about the contract on the graphical interface, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/14.png)
 
 
-## 更新数据
+## Update Data
 
-在用户**配置了数据服务**或者**交易接口（已连接）提供充足的历史数据**的情况下，点击右上角的【更新数据】按钮，即可基于图形界面上显示的所有合约数据，执行一键自动下载更新。
+If the user **configured data service** or **trading interface (connected) provides sufficient historical data**, click on the upper right corner of the [Update Data] button, you can perform a one-click automatic download and update based on all the contract data displayed on the graphical interface.
 
-更新前图形界面显示如下图：
+The graphical interface before updating is shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/17.png)
 
-点击【更新数据】按钮，会弹出更新进度的信息提示对话框，如下图所示：
+Clicking the [Update Data] button brings up an information alert dialog box on the progress of the update, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/19.png)
 
-此时DataManager会自动**从数据库中已有数据的结束日期开始，下载截止到当前最新日期**的数据，并更新到数据库中。
+At this time, DataManager will automatically** download the data up to the current latest date** from the end date of the existing data in the database and update it to the database.
 
-如果需要更新的数据较少，则可能瞬间完成更新任务，此时没有观察到更新对话框也是正常的。
+If the data to be updated is small, the update task may be completed instantly, and it is normal not to observe the update dialog box at this time.
 
-更新完成后，点击左上角【刷新】按钮，即可看到该合约数据已更新至当前最新日期。
+After the update is complete, click the [Refresh] button in the upper left corner to see that the contract data has been updated to the current latest date.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_manager/18.png)
 
-## 数据范围
+## Data Range
 
-请注意，虽然界面上显示了数据库中已有数据的开始和结束时间，**但并不代表数据库中储存了从开始时间到结束时间之间所有的数据**。
+Please note that although the interface shows the start and end time of the data already in the database, ** it does not mean that all the data between the start time and the end time is stored in the database**.
 
-如果依赖于交易接口提供的历史数据，一但开始时间和结束时间之间的时间跨度超过接口所能提供的数据范围，就可能导致数据之间出现缺失的情况。因此建议更新数据之后，点击【查看】按钮检查一下该合约数据是否连续。
+If you rely on the historical data provided by the trading interface, as soon as the time span between the start time and the end time exceeds the range of data that the interface can provide, it may lead to a situation where there are missing data between them. Therefore, it is recommended that after updating the data, click the [View] button to check whether the data for the contract is continuous.

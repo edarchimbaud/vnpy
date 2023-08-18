@@ -1,167 +1,167 @@
-# Windows安装指南
+# Windows Installation Guide
 
-本文档中安装步骤适用的Windows系统包括：
+Windows systems to which the installation steps in this document apply include:
 
 - Windows 10/11
 - Windows Server 2019
 
-> 其他版本的Windows系统安装时可能遇到各种依赖库问题，不推荐使用。
+> Other versions of Windows systems may encounter various issues with dependent libraries during installation and are not recommended.
 
-在Windows系统上安装VeighNa，推荐使用官方推出的【VeighNa Studio Python发行版】，**尤其是初次接触Python的编程新手**。
+To install VeighNa on Windows systems, the official [VeighNa Studio Python distribution] is recommended, **especially for programming novices who are new to Python**.
 
-作为一站式的量化投研交易Python环境，VeighNa Studio整合了：
+As a one-stop Python environment for quantitative investment research trading, VeighNa Studio integrates:
 
-- Python 3.10 64位（Python官网版本）
-- VeighNa和其他相关依赖库
-- VeighNa Station（VeighNa框架的图形化管理工具）
+- Python 3.10 64-bit (official Python version)
+- VeighNa and other related dependent libraries
+- VeighNa Station (graphical management tool for the VeighNa framework)
 
-对于已经有比较丰富的编程经验或者需要用到特定Python发行版（如Anaconda）的用户，也可以采用手动安装的方案。
+For users who are already more experienced in programming or need to use a specific Python distribution (e.g. Anaconda), a manual installation solution is also available.
 
 
-## VeighNa Studio方案
+## VeighNa Studio program
 
-### 下载安装
+### Download and install
 
-在[VeighNa官网](https://www.vnpy.com/)可以下载VeighNa Studio安装包。
+The VeighNa Studio installer can be downloaded from the [VeighNa official website](https://www.vnpy.com/).
 
-下载完成后，双击安装包进入VeighNa Studio安装向导（推荐点击右键，选择【使用管理员身份运行】进行安装），使用默认设置点击【快速安装】按钮即可进行VeighNa Studio安装，如下图所示：
+After the download is complete, double-click the installation package to enter the VeighNa Studio Installation Wizard (we recommend right-clicking and selecting [Run as Administrator] for installation), and using the default settings click the [Quick Install] button to proceed with the VeighNa Studio installation, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/21.png)
 
-> 推荐将VeighNa Studio安装在默认路径的C:\veighna_studio，其他VeighNa文档和教程中均使用该目录作为VeighNa安装目录进行讲解。
+> It is recommended to install VeighNa Studio in the default path of C:\veighna_studio, other VeighNa documents and tutorials use this directory as the VeighNa installation directory to explain.
 
-如果想进行个性化安装，可点击【自定义安装】进入高级选项页面，如下图所示：
+If you want to personalize the installation, you can click [Customize Installation] to enter the Advanced Options page, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/24.png)
 
-安装完成后，会转换到安装成功页面，如下图所示：
+After the installation is complete, it will switch to the Installation Success page, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/26.png)
 
-此时桌面会出现VeighNa Station的图标，双击图标即可运行VeighNa Station。
+The VeighNa Station icon will appear on your desktop, double click the icon to run VeighNa Station.
 
-### 使用
+### Use
 
-安装成功后，启动命令行工具即可直接使用VeighNa Studio Python发行版。
+After successful installation, start the command line tool to use VeighNa Studio Python distribution directly.
 
-输入python即可进入python的交互式环境，如下图所示：
+Type python to enter the interactive python environment as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/29.png)
 
-此时在命令行中输入python代码就会立即执行。如果想运行pyqtgraph的自带的例子，可以依次输入以下代码：
+At this point, typing python code on the command line will execute it immediately. If you want to run the example that comes with pyqtgraph, you can enter the following code in order:
 
 ```python 3
 from pyqtgraph import examples
 examples.run()
 ```
 
-此时则会弹出Examples的运行窗口，如下图所示：
+This brings up the run window for Examples, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/30.png)
 
-点击左侧的Basic Plotting则会弹出示例的图形界面，如下图所示：
+Clicking on Basic Plotting on the left will bring up the graphical interface of the examples, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/31.png)
 
-如果想打开jupyter lab进行投资研究工作，可以打开cmd，输入jupyter lab，即可成功启动，如下图所示：
+If you want to open jupyter lab for investment research, you can open cmd and type in jupyter lab to start it successfully, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/32.png)
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/38.png)
 
-### 修改
+### Modify
 
-如果安装之后，想要添加或者移除某项功能，可以双击VeighNa Studio的安装包，进入VeighNa Studio安装界面，如下图所示：
+If you want to add or remove a feature after installation, you can double-click the VeighNa Studio installation package to enter the VeighNa Studio installation interface, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/33.png)
 
-点击【修改】，进入修改页面，如下图所示：
+Click [Modify] to enter the modification page, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/35.png)
 
-选择完可选功能后，点击【下一步】，进入高级选项页面，如下图所示：
+After selecting the optional features, click [Next] to enter the Advanced Options page, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/37.png)
 
-选择完毕，即可重新安装。
+After selecting, you can reinstall.
 
-### 修复
+### Repair
 
-如果安装之后，出现安装不完整或者其他需要修复的情况，可以双击VeighNa Studio的安装包，进入VeighNa Studio安装界面，如下图所示：
+If, after installation, the installation is incomplete or otherwise needs to be repaired, you can double-click the VeighNa Studio installation package to enter the VeighNa Studio installation screen, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/33.png)
 
-点击【修复】，进入修复界面，如下图所示：
+Click [Repair] to enter the repair interface, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/34.png)
 
-修复完成后，会转换到修复成功页面，如下图所示：
+After the repair is completed, it will switch to the Repair Success page, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/15.png)
 
-### 卸载
+### Uninstallation
 
-如果想卸载VeighNa Studio， 可以双击VeighNa Studio的安装包，进入VeighNa Studio安装界面，如下图所示：
+If you want to uninstall VeighNa Studio, you can double-click the VeighNa Studio installation package to enter the VeighNa Studio installation interface, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/33.png)
 
-点击【卸载】，进入卸载界面，如下图所示：
+Click [Uninstall] to enter the uninstallation interface, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/27.png)
 
-卸载完成后，会转换到卸载成功页面，如下图所示：
+After the uninstallation is completed, it will switch to the uninstallation success page, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/28.png)
 
 
-## 手动安装方案
+### Manual installation program
 
-### 准备Python环境
+### Prepare Python environment
 
-首先请在电脑上准备好Python 3.10 64位环境（**注意必须是64位版本**），推荐使用Python官网的发行版，也可以使用Anaconda、Miniconda、Canopy等发行版。
+First of all, please prepare the Python 3.10 64-bit environment on your computer (**Note that it must be the 64-bit version**). We recommend using the distribution from the Python official website, but you can also use Anaconda, Miniconda, Canopy and other distributions.
 
-这里我们以Python官网的发行版为例，首先在[Python官网](https://www.python.org/downloads/windows/)下载安装文件，选择【Windows installer (64-bit)】，如下图所示：
+Here we take the distribution of Python official website as an example, first of all, download the installation file in [Python official website](https://www.python.org/downloads/windows/), select [Windows installer (64-bit)], as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/22.png)
 
-下载完毕后，双击文件进入Python安装向导，勾选【Add Python3.10 to PATH】选项后，点击【Install Now】进行安装，推荐使用默认设置一路点击【下一步】直到安装完成即可：
+After the download is complete, double-click the file into the Python installation wizard, check the [Add Python3.10 to PATH] option, click [Install Now] to install, recommended to use the default settings all the way to click [Next] until the installation is complete:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/23.png)
 
 
-### 下载安装VeighNa  
+### Downloading and installing VeighNa  
 
-下载VeighNa源代码（Windows系统请选择zip格式）：
+Download VeighNa source code (zip format for Windows):
 
-- [VeighNa Github下载地址](https://github.com/vnpy/vnpy/releases)
-- [VeighNa Gitee下载地址](https://gitee.com/mirrors/vn-py/releases)
+- [VeighNa Github download address](https://github.com/vnpy/vnpy/releases)
+- [VeighNa Gitee download address](https://gitee.com/mirrors/vn-py/releases)
 
-下载完成后解压，然后启动命令行工具（CMD或者PowerShell），进入源代码所在的目录后（即install.bat文件所在的目录），输入下列命令运行脚本执行一键安装：
+After the download is complete, unzip it, then launch a command line tool (CMD or PowerShell), go to the directory where the source code is located (i.e. where the install.bat file is located), and enter the following commands to run the script to perform a one-click install:
 
 ```
 install.bat
 ```
 
-一键安装过程整体分为3步：
+The overall one-click installation process is divided into 3 steps:
 
-1. 下载安装ta-lib库；
-2. 安装requirements.txt文件内的相关依赖库；
-3. 安装VeighNa本身。
+1. Download and install the ta-lib library;
+2. install the relevant dependency libraries inside the requirements.txt file;
+3. install VeighNa itself.
 
-如果某一步安装过程中发生错误，请截取保存命令行中的报错信息（**注意优先保存底部的报错内容**），前往VeighNa社区论坛发帖提问寻求帮助。
+If an error occurs during one of the installation steps, please save the error message on the command line (**prioritize the error message at the bottom**) and go to the VeighNa community forums to post a question for help.
 
-### 启动VeighNa Trader
+### Starting VeighNa Trader
 
-启动命令行工具，进入解压VeighNa源代码的目录下，在文件夹examples/veighna_trader中找到run.py文件。
+Start the command line tool, go to the directory where you extracted the VeighNa source code and find the file run.py in the folder examples/veighna_trader.
 
-输入如下命令即可启动VeighNa Trader：
+Enter the following command to start VeighNa Trader:
 
 ```
 python run.py 
 ```
 
-请注意run.py中包含了较多的启动加载项（交易接口和应用模块），请根据自己所用的操作系统以及实际的交易需求修改调整使用（若需加载接口，取消接口前注释符号即可）。
+Please note that run.py contains a large number of startup add-ons (trading interfaces and application modules), so please modify and adjust them according to your operating system and actual trading needs (if you need to load interfaces, just remove the comment symbols in front of the interfaces).
 
-连接接口介绍详见交易接口篇。
+For more information on connecting interfaces, please refer to the chapter on trading interfaces.
 
-> 如果启动时出现一些库版本不兼容的情况，可根据提示对这些库重新pip安装。
+> If some libraries are incompatible at startup, follow the instructions to re-pip install these libraries.

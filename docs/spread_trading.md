@@ -368,7 +368,7 @@ from vnpy_spreadtrading import (
 在策略类的下方，可以设置策略的作者（author），参数（parameters）以及变量（variables），如下方代码所示：
 
 ```python 3
-    author = "用Python的交易员"
+    author = "Trader in Python"
 
     boll_window = 20
     boll_dev = 2
@@ -454,7 +454,7 @@ SpreadStrategyTemplate中以on开头的函数称为回调函数，在编写策�
         """
         Callback when strategy is inited.
         """
-        self.write_log("策略初始化")
+        self.write_log("Strategy initialization")
         self.load_bar(10)
 ```
 
@@ -475,7 +475,7 @@ SpreadStrategyTemplate中以on开头的函数称为回调函数，在编写策�
         """
         Callback when strategy is started.
         """
-        self.write_log("策略启动")
+        self.write_log("Strategy started")
 ```
 
 调用策略的on_start函数启动策略后，策略的trading状态变为【True】，此时策略才能够发出交易信号。
@@ -493,7 +493,7 @@ SpreadStrategyTemplate中以on开头的函数称为回调函数，在编写策�
         """
         Callback when strategy is stopped.
         """
-        self.write_log("策略停止")
+        self.write_log("Strategy stopped")
         self.put_event()
 ```
 调用策略的on_stop函数停止策略后，策略的trading状态变为【False】，此时策略就不会发出交易信号了。

@@ -1,70 +1,70 @@
-# ChartWizard - 实时K线图表模块
+# ChartWizard - Real-time K-Line Charting Module
 
-## 功能简介
+## Introduction
 
-ChartWizard是用于**实时K线图表展示**的功能模块，用户可以通过其UI界面查看实时和历史K线行情，目前只支持显示1分钟级别的K线数据，实时K线（最新的一根K线）为Tick级刷新。
+ChartWizard is a functional module for **real-time K-line chart display**, users can view real-time and historical K-line quotes through its UI, currently only supports displaying 1-minute level K-line data, real-time K-line (the latest K-line) for Tick level refresh.
 
-## 加载启动
+## Loading Startup
 
-### VeighNa Station加载
+### Loading VeighNa Station
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【ChartWizard】。
+After launching and logging in to VeighNa Station, click the [Trading] button and check [ChartWizard] in the [Application Module] column of the configuration dialog box.
 
-### 脚本加载
+### Script Loading
 
-在启动脚本中添加如下代码：
+Add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+# Write at the top
 from vnpy_chartwizard import ChartWizardApp
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_app(ChartWizardApp)
 ```
 
 
-## 启动模块
+## Start the module
 
-在启动模块之前，请先连接交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：
+Before starting the module, please connect to the trading interface (see the Connecting to the Interface section of the Basic Usage chapter for details on how to connect). Start the module after you see the "Contract Information Query Successful" output in the [Log] column of the VeighNa Trader main interface, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png)
 
-请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。
+Please note that the IB interface does not get all contract information automatically when you log in, but only when you subscribe to the market manually. Therefore, you need to subscribe to the contract quotes manually on the main interface before launching the module.
 
-由于VeighNa本身并不提供任何数据服务，对于K线图表绘制过程中用到的历史数据，国内期货历史数据由数据服务提供，用户需要准备和配置数据服务账号（配置方法详见基本使用篇的全局配置部分）。
+Since VeighNa itself does not provide any data service, for the historical data used in the process of K-line charting, the domestic futures historical data is provided by the data service, users need to prepare and configure the data service account (for details of the configuration method, please refer to the Global Configuration section of the Basic Usage chapter).
 
-成功连接交易接口后，在菜单栏中点击【功能】-> 【K线图表】，或者点击左侧按钮栏的图标：
+After successfully connecting to the trading interface, click [Function] -> [K-Line Chart] in the menu bar, or click the icon on the left side button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/1.png)
 
-即可进入实时K线图表模块的UI界面，如下图所示：
+You can enter the UI interface of the real-time K-line chart module, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/2.png)
 
 
-## 新建图表
+## New Chart
 
-打开图表窗口后，在【本地代码】编辑框中输入合约代码（注意本地代码由代码前缀和交易所后缀两部分组成，如rb2112.SHFE）。
+After opening the chart window, enter the contract code in the [Local Code] edit box (note that the local code consists of two parts: the code prefix and the exchange suffix, such as rb2112.SHFE).
 
-点击【新建图表】的按钮，即可创建对应合约的K线图表，如下图所示：
+Click the [New Chart] button to create a K-line chart of the corresponding contract, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/3.png)
 
-用户可以新建多个合约的K线图表，通过切换窗口来实现快速切换： 
+Users can create new K-line charts for multiple contracts, with a toggle window for quick switching: 
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/4.png)
 
 
-## 查看图表
+## View Charts
 
-每个合约的图表分为上下两块子图区域：
+The chart for each contract is divided into two sub-charts areas, upper and lower:
 
-- 上面的子图为行情K线；
-- 下面的子图为成交量数据。
+- The upper sub-chart is the ticker K-line;
+- The lower sub-chart shows volume data.
 
-图表上的十字光标可用于定位和显示特定时间点的具体数据，在X轴和Y轴上均会对应数据点的标签，同时在左上角也会显示此根K线的OHLCV等信息。
+The crosshair on the chart can be used to locate and display specific data for a particular point in time, with labels corresponding to the data points on both the X and Y axes, and information such as the OHLCV of the K-line is also displayed in the upper left corner.
 
-其他快捷操作：
+Other quick operations:
 
-- 可以通过鼠标左键的拖拽，左右平移K线图显示的时间范围；
-- 可以通过鼠标滚轮的滚动，放大和缩小K线图显示的时间范围。
+- You can pan the time range of the K-line chart display left and right by dragging and dropping with the left mouse button;
+- You can zoom in and out the time range of the K-line chart by scrolling with the mouse wheel.

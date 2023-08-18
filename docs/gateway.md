@@ -1,780 +1,780 @@
-# 交易接口
+# Transaction interface
 
-## 加载启动
+## Loading startup
 
-### VeighNa Station加载
+### Loading VeighNa Station
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【交易接口】栏勾选想要交易的接口。
+After launching and logging in to VeighNa Station, click the [Trading] button and check the interface you want to trade in the [Trading Interface] field in the configuration dialog box.
 
-### 脚本加载
+### Script Loading
 
-以CTP接口为例，在启动脚本中添加如下代码：
+Take the CTP interface as an example, add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+### Write it at the top
 from vnpy_ctp import CtpGateway
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_gateway(CtpGateway)
 ```
 
 
-## 连接接口
+## Connecting to the interface
 
-在图形化操作界面VeighNa Trader上的菜单栏中点击【系统】->【连接CTP】，会弹出账号配置窗口，如下图所示：
+Click [System] -> [Connect CTP] in the menu bar on the graphical operator interface VeighNa Trader, and the account configuration window will pop up as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/1.png)
 
-输入账号、密码等相关信息即可连接接口，并立刻进行查询工作: 如查询账号信息、查询持仓、查询委托信息、查询成交信息等。查询成功后可在主界面的组件中看到输出的日志，如下图所示：
+Enter the account number, password and other relevant information to connect to the interface, and immediately carry out the query work: such as query account information, query positions, query entrusted information, query transaction information and so on. After successful query, you can see the output log in the component of the main interface, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/5.png)
 
-### 修改json配置文件
+### Modify the json configuration file
 
-接口配置相关信息保存在json文件中，放置在用户目录下的.vntrader文件夹内，如下图所示：
+The interface configuration related information is saved in a json file, which is placed in the .vntrader folder under the user directory, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/3.png)
 
-如果需要修改接口配置文件，用户既可以在图形化界面VeighNa Trader内修改，也可以直接在.vntrader文件夹下修改对应的json文件。
+If you need to modify the interface configuration file, you can either modify it in the GUI VeighNa Trader or modify the corresponding json file directly in the .vntrader folder.
 
-另外将json配置文件分离于vnpy的好处在于：避免每次升级都要重新配置json文件。
+Another advantage of separating the json configuration file from the vnpy is that it avoids having to reconfigure the json file for each upgrade.
 
-### 查看可交易的合约
+### View tradable contracts
 
-先登录接口，然后在菜单栏中点击【帮助】->【查询合约】即可弹出空白的【查询合约】窗口，点击【查询】按钮后才会显示查询结果。留空则查询全部合约，如下图所示：
+Login to the interface first, then click [Help] -> [Query Contracts] in the menu bar to bring up a blank [Query Contracts] window, and click the [Query] button to display the query results. If you leave it blank, you can check all the contracts, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/gateway/4.png)
 
 
-## 接口分类
+## Interface Classification
 
-| 接口                 |                    类型                         |
+| Interface | Type |
 | ---------------------| :--------------------------------------------: |
-| CTP                  |           期货、期货期权（实盘6.5.1）            |
-| CTP测试              |           期货、期货期权（测试6.5.1）            |
-| CTP Mini            |            期货、期货期权（实盘1.4）             |
-| 飞马                 |                    期货                         |
-| CTP期权              |             ETF期权（实盘20190802）              |
-| 顶点飞创             |                    ETF期权                       |
-| 顶点HTS              |                    ETF期权                       |
-| 恒生UFT              |                期货、ETF期权                     |
-| 易盛                 |                期货、黄金TD                      |
-| 中泰XTP              |              A股、两融、ETF期权                  |
-| 国泰君安统一交易网关   |                    A股                          |
-| 华鑫奇点股票          |                    A股                          |
-| 华鑫奇点期权          |                  ETF期权                        |
-| 中亿汇达Comstar       |                银行间市场                       |
-| 东方证券OST           |                    A股                          |
-| 盈透证券              |                 海外多品种                      |
-| 易盛9.0外盘           |                  外盘期货                       |
-| 直达期货              |                  外盘期货                       |
-| 融航                 |                  期货资管                        |
-| TTS                  |                    期货                         |
-| 飞鼠                  |                  黄金TD                         |
-| 金仕达黄金            |                  黄金TD                         |
+| CTP | Futures, Futures Options (Live 6.5.1) |
+| CTP Test | Futures, Futures Options (Test 6.5.1) |
+| CTP Mini | Futures, Futures Options (Live 1.4) |
+| Pegasus | Futures |
+| CTP Options | ETF Options (Live 20190802) |
+| Vertex HTS | ETF Options |
+| CTP Options | ETF Options (Live 20190802) |
+| Hang Seng UFT | Futures, ETF options |
+| ESSENCE | Futures, Gold TD |
+| HTS | ETF OPTIONS |
+| CMT XTP | A-Share, Dual-Financing, ETF Options |
+| Guotai Junan Unified Trading Gateway | A shares |
+| Huaxin Qidian Stocks | A shares |
+| Comstar | Interbank market |
+| Oriental Securities OST | A shares |
+| Reuters Securities | Overseas Multi-species |
+| Edsa 9.0 | Futures | 
+| Direct Futures | Futures |
+| Straight Futures | Futures |
+| Direct Futures | Futures |
+| TTS | Futures |
+| Gold TTS | Gold TD |
 
 
-## 接口详解
+## Interface Details
 
 ### CTP
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
-  - Windows
+- Operating System
+  - Ubuntu
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - 期货期权
+- Trading varieties
+  - Futures
+  - Futures Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
-#### 获取账号
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
+#### Get Account Number
 
-- 仿真账号：从SimNow网站上获取。只需输入手机号码和短信验证即可（短信验证有时只能在工作日正常工作时段收到）。SimNow的用户名(InvestorID)为6位纯数字，经纪商编号为9999，并且提供两套环境用于盘中仿真交易以及盘后的测试。需要修改一次密码之后才能使用。请注意每套仿真环境的适用时间段是不同的。
+- SimNow account: Get it from SimNow website. Simply enter your cell phone number and SMS verification (SMS verification can sometimes only be received during normal business hours on weekdays). SimNow's username (InvestorID) is a 6-digit plain number, the Broker ID number is 9999, and it provides two environments for intraday simulation trading and after-hours testing. You need to change your password once before you can use it. Please note that the applicable time period for each set of simulation environment is different.
   
-- 实盘账号：在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商编号也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。
+- Real trading account: open an account in a futures company, by contacting the account manager can be opened. The user name is a pure number and the brokerage number is also a 4-digit pure number (the brokerage number of each futures company is different). In addition, a live account can also be opened for simulated trading, again, you need to contact your account manager.
 
-### CTPTEST（CTP测试）
+### CTPTEST (CTP Test)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - 期货期权
+- Trading varieties
+  - Futures
+  - Futures Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-在期货公司开户，通过联系客户经理向期货公司申请进行穿透式接入测试。
+Open an account with a futures company and apply to the futures company for a penetrating access test by contacting your account manager.
 
-### MINI（CTP Mini）
+### MINI (CTP Mini)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - 期货期权
+- Trading varieties
+  - Futures
+  - Futures Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商编号也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。
+Open an account with a futures company, which can be opened by contacting your account manager. The user name is a pure number and the brokerage number is also a 4-digit pure number (each futures company has a different brokerage number). Alternatively, a live account can be opened for simulated trading, again by contacting your account manager.
 
-### FEMAS（飞马）
+### FEMAS (Pegasus)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - 期货
+- Trading varieties
+  - Futures
 
-- 持仓方向
-  - 只支持双向持仓
+- Position direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商代码也是4位纯数字（每个期货公司的经纪商编号都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。
+Open an account with a futures company, which can be opened by contacting your account manager. The user name is a pure number and the broker code is also a 4-digit pure number (each futures company has a different broker number). In addition, a live account can also be opened for simulated trading, again, you need to contact your account manager.
 
-### SOPT（CTP期权）
+### SOPT (CTP Options)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
-  - Windows
-  - Ubuntu
-
-- 交易品种
-  - ETF期权
-
-- 持仓方向
-  - 只支持双向持仓
-
-- 历史数据
-  - 不提供
-
-#### 相关字段
-
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
-
-#### 获取账号
-
-在期货公司开户，通过联系客户经理可以开通。用户名为纯数字，经纪商代码也是4位纯数字（每个期货公司的经纪商代码都不同）。另外，实盘账号也可以开通仿真交易功能，同样需要联系客户经理。
-
-### SEC（顶点飞创）
-
-#### 接口支持
-
-- 操作系统
-  - Windows
-
-- 交易品种
-  - ETF期权
-
-- 持仓方向
-  - 股票只支持单向持仓
-  - 股票期权只支持双向持仓
-
-- 历史数据
-  - 不提供
-
-#### 相关字段
-
-- 账号：
-- 密码：
-- 行情地址：
-- 交易地址：
-- 行情协议：TCP、UDP
-- 授权码：
-- 产品号：
-- 采集类型：顶点、恒生、金证、金仕达
-- 行情压缩：N、Y
-
-#### 获取账号
-
-在期货公司开户，通过联系客户经理可以开通。
-
-### HTS（顶点HTS）
-
-#### 接口支持
-
-- 操作系统
-  - Windows
-
-- 交易品种
-  - ETF期权
-
-- 持仓方向
-  - 双向持仓
-
-- 历史数据
-  - 不提供
-
-#### 相关字段
-
-- 账号：
-- 密码：
-- 行情地址：
-- 交易地址：
-- 行情协议：TCP、UDP
-- 授权码：
-- 产品号：
-- 采集类型：顶点、恒生、金证、金仕达
-- 行情压缩：N、Y
-
-#### 获取账号
-
-在期货公司开户，通过联系客户经理可以开通。
-
-### UFT（恒生UFT）
-
-#### 接口支持
-
-- 操作系统
+- Operating System
   - Windows
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - ETF期权
+- Trading varieties
+  - ETF Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 行情服务器：
-- 交易服务器：
-- 服务器类型：期货、ETF期权
-- 产品名称：
-- 授权编码：
-- 委托类型：q
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-测试账号请通过恒生电子申请。
+Open an account with a futures company, which can be opened by contacting your account manager. The username is a pure number and the brokerage code is also a 4-digit pure number (the brokerage code is different for each futures company). Alternatively, a live account can also be opened for simulated trading, again by contacting an account manager.
 
-### ESUNNY（易盛）
+### SEC (Vertex Feitron)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
+  - Windows
+
+- Trading varieties
+  - ETF Options
+
+- Position Direction
+  - Stocks only support one-way positions
+  - Stock options only support two-way positions
+
+- Historical data
+  - Not available
+
+#### Related Fields
+
+- Account Number:
+- Password:
+- Ticker Address:
+- Trading Address:
+- Running Protocol: TCP, UDP
+- Authorization Code:
+- Product Number:
+- Capture Type: Vertex, Hang Seng, JSE, Jinshida
+- Ticker Compression: N, Y
+
+#### Get account number
+
+Open an account with a futures company, which can be opened by contacting your account manager.
+
+### HTS (Vertex HTS)
+
+#### Interface Support
+
+- Operating System
+  - Windows
+
+- Trading varieties
+  - ETF Options
+
+- Position Direction
+  - Bidirectional Positions
+
+- Historical data
+  - Not available
+
+#### Related Fields
+
+- Account:
+- Password:
+- Ticker Address:
+- Trading Address:
+- Running Protocol: TCP, UDP
+- Authorization Code:
+- Product Number:
+- Capture Type: Vertex, Hang Seng, JSE, Jinshida
+- Ticker Compression: N, Y
+
+#### Get account number
+
+Open an account with a futures company, which can be opened by contacting your account manager.
+
+### UFT (Hang Seng UFT)
+
+#### Interface Support
+
+- Operating System
   - Windows
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - 黄金TD
+- Trading Style
+  - Futures
+  - ETF Options
 
-- 持仓方向
-  - 支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不支持
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 行情账号：
-- 行情密码：
-- 行情服务器：
-- 行情端口：0
-- 行情授权码：
-- 交易账号：
-- 交易密码：
-- 交易服务器：
-- 交易端口：0
-- 交易产品名称：
-- 交易授权编码：
-- 交易系统：内盘、外盘
+- Username:
+- Password:
+- Ticker Server:
+- Trading Server:
+- Server Type: Futures, ETF Options
+- Product Name:
+- Authorization Code:
+- Delegation Type: q
 
-#### 获取账号
+#### Get Account Number
 
-测试账号请通过易盛官方网站申请。
+Test account please apply through Hang Seng Electronics.
 
-### XTP（中泰柜台）
+### ESUNNY
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
   - Ubuntu
 
-- 交易品种
-  - A股
-  - 两融
-  - ETF期权
+- Trading varieties
+  - Futures
+  - Gold TD
 
-- 持仓方向
-  - 股票只支持单向持仓
-  - 其余标的支持双向持仓
+- Position Direction
+  - Support bi-directional positions
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not supported
 
-#### 相关字段
+#### Related Fields
 
-- 账号：
-- 密码：
-- 客户号: 1
-- 行情地址：
-- 行情端口: 0
-- 交易地址：
-- 交易端口: 0
-- 行情协议: TCP、UDP
-- 日志级别：FATAL、ERROR、WARNING、INFO、DEBUG、TRACE
-- 授权码：
+- Row Account:
+- Risk Password:
+- Quotes Server:
+- Ticker Port: 0
+- Ticker Authorization Code:
+- Trading Account Number:
+- Trading Account Number: Trading Password:
+- Trading Server:
+- Trading Port: 0
+- Trading Product Name:
+- Trading Authorization Code:
+- Trading System: Domestic, Foreign
 
-#### 获取账号
+#### Get an account
 
-测试账号请通过中泰证券申请。
+Please apply for a test account through the official website of eSun.
 
-#### 其他特点
+### XTP (China Pacific Desk)
 
-XTP是首家提供融资融券的极速柜台。
+#### Interface Support
 
-### HFT（国泰君安统一交易网关）
+- Operating System
+  - Windows
+  - Ubuntu
 
-#### 接口支持
+- Trading varieties
+  - A-share
+  - Two Financing
+  - ETF Options
 
-- 操作系统
+- Position Direction
+  - Stocks only support one-way position
+  - The rest of the underlying supports two-way positions
+
+- Historical Data
+  - Historical data is not available
+
+#### Related Fields
+
+- Account:
+- Password:
+- Client Number: 1
+- Running Address:
+- Ticker Port: 0
+- Trading Address:
+- Trading Port: 0
+- Trading Protocol: TCP, UDP
+- Log Level: FATAL, ERROR, WARNING, INFO, DEBUG, TRACE
+- Authorization Code:
+
+#### Get Account
+
+Please apply for a test account through CTS.
+
+#### Other Features
+
+XTP is the first Extreme Counter to provide financing and securities.
+
+### HFT (Guotai Junan Unified Trading Gateway)
+
+#### Interface Support
+
+- Operating System
   - Windows
 
-- 交易品种
-  - A股
+- Trading varieties
+  - A-shares
 
-- 持仓方向
-  - 只支持单向持仓
+- Position direction
+  - Only support one-way position
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 交易用户名：
-- 交易密码: 
-- 交易服务器: 
-- 交易端口：
-- 机构代号：
-- 营业部代号：
-- 网关：
-- 行情用户名：
-- 行情密码：
-- 行情服务器: 
-- 行情端口：
+- Trading User Name:
+- Trading Password. 
+- Trading Server: Trading Server: Trading Server: Trading Server: Trading Server: Trading Server: Trading Server: Trading Server: Trading Server 
+- Trading Port:
+- Organization Code:
+- Business Office Code:
+- Gateway:
+- Trading User Name:
+- Ticker Password:
+- Ticker Server. 
+- Ticker Port:
 
-#### 获取账号
+#### Get Account
 
-测试账号请通过国泰君安申请。
+Test account please apply through Guotai Junan.
 
-### TORASTOCK（华鑫奇点股票）
+### TORASTOCK (Huaxin Singularity Stock)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - A股
+- Trading varieties
+  - A Shares
 
-- 持仓方向
-  - 只支持单向持仓
+- Position direction
+  - Only support one-way position
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 账号：
-- 密码：
-- 行情服务器：
-- 交易服务器：
-- 账号类型：用户代码、资金账号
-- 地址类型：前置地址、FENS地址
+- Account:
+- Password:
+- Quote Server:
+- Trading server:
+- Account Type: User Code, Funding Account
+- Address Type: Front Address, FENS Address
 
-#### 获取账号
+#### Get account number
 
-测试账号请通过华鑫证券申请。
+Test account please apply through Huaxin Securities.
 
-### TORAOPTION（华鑫奇点期权）
+### TORAOPTION (Huaxin Singularity Options)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - ETF期权
+- Trading varieties
+  - ETF Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 账号：
-- 密码：
-- 行情服务器：
-- 交易服务器：
-- 账号类型：用户代码、资金账号
-- 地址类型：前置地址、FENS地址
+- Account:
+- Password:
+- Quote Server:
+- Trading server:
+- Account Type: User Code, Funding Account
+- Address Type: Front Address, FENS Address
 
-#### 获取账号
+#### Get account number
 
-测试账号请通过华鑫证券申请。
+Test account please apply through Huaxin Securities.
 
-### COMSTAR（中亿汇达）
+### COMSTAR (Zhongyi Huida)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - 银行间市场
+- Trading varieties
+  - Interbank market
 
-- 持仓方向
-  - 无
+- Position direction
+  - None
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 交易服务器：
-- 用户名：
-- 密码：
-- Key：
-- routing_type：5
-- valid_until_time：18:30:00.000
+- Trading server:
+- Username:
+- Password:
+- Key:
+- Key: Key. routing_type: 5
+- valid_until_time: 18:30:00.000
 
-#### 获取账号
+#### Get account number
 
-只有各类大型金融机构才能用（券商自营交易部、银行金融市场部等），私募或者个人都用不了。需要购买ComStar的交易接口服务之后才能使用。
+It can only be used by large financial institutions (proprietary trading departments of brokerage firms, financial market departments of banks, etc.), but not by private equity firms or individuals. You need to purchase ComStar's trading interface service before you can use it.
 
-### OST（东方证券）
+### OST (Orient Securities)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - A股
+- Trading varieties
+  - A-shares
 
-- 持仓方向
-  - 单向持仓
+- Position direction
+  - Unidirectional Position
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 交易服务器：
-- 上交所快照地址：
-- 上交所快照端口: 0
-- 深交所快照地址：
-- 深交所快照端口: 0
-- 本机ip地址：
+- Username:
+- Password:
+- Trading Server:
+- SSE Snapshot Address:
+- SSE Snapshot Port: 0
+- SSE Snapshot Address:
+- SSE Snapshot Port: 0
+- Local ip address:
 
-#### 获取账号
+#### Get account number
 
-在证券公司开户，通过联系客户经理可以开通。
+Open an account at a securities company, which can be opened by contacting an account manager.
 
-### IB（盈透证券）
+### IB (Intelligent Brokerage)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
   - Ubuntu
   - Mac
 
-- 交易品种
-  - 海外多品种
+- Trading varieties
+  - Overseas Multi-species
 
-- 持仓方向
-  - 只支持单向持仓
+- Position Direction
+  - Only one-way positions are supported
 
-- 历史数据
-  - 提供
+- Historical Data
+  - Provide
 
-#### 相关字段
+#### Related Fields
 
-- TWS地址：127.0.0.1
-- TWS端口：7497
-- 客户号：1
-- 交易账户：
+- TWS Address: 127.0.0.1
+- TWS Port: 7497
+- Client Number: 1
+- Trading Account:
 
-#### 获取账号
+#### Get account number
 
-在盈透证券开户并且入金后可以获得API接入权限。
+You can get API access after opening an account with PCCW Securities and making a deposit.
 
-#### 其他特点
+#### Other features
 
-可交易品种覆盖诸多海外市场的股票、期权、期权；手续费相对较低。
+Tradable varieties cover stocks, options and options of many overseas markets; relatively low commission.
 
-请注意，IB接口的合约代码较为特殊，请前往官网的产品查询板块查询。VeighNa Trader中使用的是盈透证券对于每个合约在某一交易所的唯一标识符ConId来作为合约代码，而非Symbol或者LocalName。
+Please note that the contract code of IB interface is quite special, please go to the product inquiry section of the official website to inquire. VeighNa Trader uses the unique identifier of each contract in a certain exchange ConId as the contract code, rather than Symbol or LocalName.
 
-### TAP（易盛9.0外盘）
+### TAP (eSun 9.0 Forex)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - 外盘期货
+- Trading Instruments
+  - Futures
 
-- 持仓方向
-  - 只支持单向持仓
+- Position direction
+  - Only one-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 行情账号：
-- 行情密码：
-- 行情服务器：
-- 行情端口：0
-- 交易账号：
-- 交易密码：
-- 交易服务器：
-- 交易端口：0
-- 授权码：
+- Ticker Account Number:
+- Ticker Password:
+- Ticker Server:
+- Ticker Port: 0
+- Trading Account:
+- Trading Password:
+- Trading Server:
+- Trading Port: 0
+- Authorization Code:
 
-#### 获取账号
+#### Get Account
 
-测试账号请通过易盛官方网站申请。
+Please apply for a test account through the official website of eSun.
 
-### DA（直达期货）
+### DA (Direct Access Futures)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Windows
 
-- 交易品种
-  - 外盘期货
+- Trading varieties
+  - Foreign Futures
 
-- 持仓方向
-  - 只支持双向持仓
+- Position direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 交易服务器：
-- 行情服务器：
-- 授权码：
+- Username:
+- Password:
+- Trading Server:
+- Ticker Server:
+- Authorization Code:
 
-#### 获取账号
+#### Get an account
 
-在直达期货开户并且入金后可以获得API接入权限。
+You can get API access after you open an account with DIRECT FUTURES and make a deposit.
 
-### ROHON（融航）
+### ROHON
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
-  - Windows
+- Operating System
+  - Ubuntu
   - Ubuntu
 
-- 交易品种
-  - 期货资管
+- Transaction Type
+  - Futures Management
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only bi-directional positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-测试账号请通过融航申请。
+Please apply for a test account through Ronghang.
 
-请注意，融航接口的【经纪商代码】不再是纯数字形态，而是可以包含英文和数字的字符串；VeighNa连接融航进行交易在穿透式认证中属于【中继】模式，而不再是连接柜台（CTP、恒生等）进行交易时的【直连】模式，所以在申请穿透式认证测试填表时不要选错。
+Please note that the [Broker Code] of the Ronghang interface is no longer in pure numeric form, but a string that can contain both English and numbers; VeighNa connecting to Ronghang for trading belongs to the [Relay] mode in the passthrough authentication and is no longer in the [Direct Connection] mode when connecting to the counter (CTP, Hang Seng, etc.) for trading, so don't make a mistake in selecting the wrong option when applying for the passthrough authentication test fill in the form.
 
 ### TTS
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
-  - Windows
+- Operating System
+  - Ubuntu
   - Ubuntu
 
-- 交易品种
-  - 期货
-  - 期货期权
+- Trading varieties
+  - Futures
+  - Futures Options
 
-- 持仓方向
-  - 只支持双向持仓
+- Position Direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 经纪商代码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Broker Code:
+- Trading Server:
+- Ticker Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-请通过OpenCTP平台获取。
+Please get it through OpenCTP platform.
 
-### SGIT（飞鼠）
+### SGIT (Flying Mouse)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating Systems
   - Ubuntu
 
-- 交易品种
-  - 黄金TD
+- Trading varieties
+  - Gold TD
 
-- 持仓方向
-  - 只支持双向持仓
+- Position direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 交易服务器：
-- 行情服务器：
-- 产品名称：
-- 授权编码：
+- Username:
+- Password:
+- Trading Server:
+- Quote Server:
+- Product Name:
+- Authorization Code:
 
-#### 获取账号
+#### Get Account Number
 
-请通过黄金现货经纪商获取。
+Please get it through Gold Spot Broker.
 
-### KSGOLD（金仕达黄金）
+### KSGOLD (KSGOLD)
 
-#### 接口支持
+#### Interface Support
 
-- 操作系统
+- Operating System
   - Ubuntu
 
-- 交易品种
-  - 黄金TD
+- Trading varieties
+  - Gold TD
 
-- 持仓方向
-  - 只支持双向持仓
+- Position direction
+  - Only two-way positions are supported
 
-- 历史数据
-  - 不提供
+- Historical data
+  - Not available
 
-#### 相关字段
+#### Related Fields
 
-- 用户名：
-- 密码：
-- 交易服务器：
-- 行情服务器：
-- 账号类型：银行账号、黄金账号
+- Username:
+- Password:
+- Trading Server:
+- Ticker Server:
+- Account Type: Bank Account, Gold Account
 
-#### 获取账号
+#### Get account number
 
-请通过黄金现货经纪商获取。
+Please get the account number through your gold spot broker.

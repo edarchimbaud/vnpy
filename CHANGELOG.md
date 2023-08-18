@@ -164,7 +164,7 @@
 5. update vnpy_xtp to version 2.2.32.2.0 of the XTP API to support the new bond system of SSE.
 6. optimize the data writing speed of vnpy_mongodb, based on pymongo 4.0 version of the batch write function
 7. add vnpy_ctp for delegate function return value is non-zero (failed to send request) state of the processing.
-8. change the policy template drop-down box of vnpy_ctastrategy and vnpy_ctabacktester to sort by first letter.
+8. change the strategy template drop-down box of vnpy_ctastrategy and vnpy_ctabacktester to sort by first letter.
 
 ## Fixes
 1. fix a data refresh issue in the Greek value monitoring component of the vnpy_optionmaster module
@@ -368,7 +368,7 @@
 ## Adjustments
 2. Strip the exhaustion and genetic optimization algorithms from CTA strategy module to vnpy.trader.optimize module. 3.
 3. After the genetic algorithm is optimized, output the results of all backtested parameters (not just the optimal results).
-4. when CTA policy engine loads a policy file, add a module reloading operation, so that any changes to the policy file can take effect immediately.
+4. when CTA strategy engine loads a strategy file, add a module reloading operation, so that any changes to the strategy file can take effect immediately.
 5. When CTA strategy engine scans strategy files in a specific directory, use the glob function (replacing the original os.walk) to avoid incorrect loading of files in subdirectories.
 6. Strip the CTA strategy module to the vnpy_ctastrategy project.
 7. stripped the CTA backtesting module into the vnpy_ctabacktester project.

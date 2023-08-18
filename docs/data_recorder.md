@@ -1,69 +1,69 @@
-# DataRecorder - 实盘行情记录模块
+# DataRecorder - Live Tick Recorder Module
 
-DataRecorder是用于**实盘行情记录**的模块，用户可以利用该模块记录实时Tick数据和K线数据，并自动写入保存到数据库中。
+DataRecorder is a module for **Live Quotes Recording**, which allows users to record real-time tick data and K-line data, and automatically write and save them to the database.
 
-记录的数据可以通过DataManager模块查看，也可以用于CtaBacktester的历史回测，以及CtaStrategy、PortfolioStrategy等策略的实盘初始化。
+The recorded data can be viewed through the DataManager module, and can also be used for historical backtesting of CtaBacktester, as well as live initialization of CtaStrategy, PortfolioStrategy and other strategies.
 
-## 加载启动
+## Load startup
 
-### VeighNa Station加载
+### VeighNa Station Loading
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【DataRecorder】。
+After launching and logging in to VeighNa Station, click the [Trading] button and check [DataRecorder] in the [Application Module] field in the configuration dialog.
 
-### 脚本加载
+### Script Loading
 
-在启动脚本中添加如下代码：
+Add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+### Write it at the top
 from vnpy_datarecorder import DataRecorderApp
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_app(DataRecorderApp)
 ```
 
-## 启动模块
+## Start the module
 
-在启动模块之前，请先连接交易接口（连接方法详见基本使用篇的连接接口部分），看到VeighNa Trader主界面【日志栏】输出“合约信息查询成功”之后再启动模块，如下图所示：
+Before starting the module, please connect to the trading interface (see the section on connecting to the interface in the chapter on basic usage for more details), and start the module after you see the output of "Contract information query succeeded" in the main interface of VeighNa Trader (log bar), as shown in the figure below:
 
-![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png)
+The following is a diagram of the module [](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png)
 
-请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。
+Please note that the IB interface does not get all the contract information automatically when you log in, but only when you subscribe to the market manually. Therefore, you need to subscribe to the contract quotes manually on the main interface before launching the module.
 
-成功连接交易接口后，在菜单栏中点击【功能】-> 【行情记录】，或者点击左侧按钮栏的图标：
+After successfully connecting to the trading interface, click [Functions] -> [Quotes] in the menu bar, or click the icon in the left button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/1.png)
 
-即可启动DataRecorder，并弹出DataRecorder的UI界面，如下图所示：
+DataRecorder will be launched and the UI of DataRecorder will pop up, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/4.png)
 
 
-## 添加记录
+## Add Records
 
-DataRecorder模块支持按需添加K线（1分钟）和Tick数据的记录任务：
+The DataRecorder module supports the task of adding records of K-line (1-minute) and Tick data on demand:
 
-1. 在【本地代码】编辑框中输入需要录制的合约本地代码（vt_symbol），如下图所示：
+1. Enter the local code (vt_symbol) of the contract to be recorded in the [Local Code] edit box as shown below:
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/5.png)
-- 注意本地代码由代码前缀和交易所后缀两部分组成，如rb2112.SHFE；
-- 编辑框对于接口连接后收到的合约信息，提供自动补全功能（大小写敏感）；
+- Note that the local code consists of two parts: the code prefix and the exchange suffix, e.g. rb2112.SHFE;
+- The edit box provides auto-completion function (case sensitive) for contract information received after the interface is connected;
 
-2. 在【写入间隔】编辑框中选择定时批量写入频率，如下图所示：
+2. In the [Write Interval] edit box, select the timed batch write frequency as shown below:
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/6.png)
-这样可以每次从队列中先取出所有待记录数据，再一次性把队列中已有数据写入数据库，从而降低数据库压力和记录延迟；
+In this way, you can first take out all the data to be recorded from the queue each time, and then write the existing data in the queue to the database at one time, so as to reduce the database pressure and recording delay;
 
-3. 点击右侧【K线记录】或者【Tick记录】对应的【添加】按钮添加录制任务：
+3. Click the [Add] button corresponding to [K-Line Record] or [Tick Record] on the right side to add a recording task:
 
-- 添加成功后，合约本地代码会出现在下方的【K线记录列表】或者【Tick记录列表】中，并在界面下方输出对应日志，如下图所示：
+- After successfully adding, the local code of the contract will appear in the [K-line Record List] or [Tick Record List] below, and the corresponding log will be output at the bottom of the interface, as shown in the following figure:
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/10.png)
 
 
-## 移除记录
+## Remove Records
 
-当不再需要记录某一合约的行情时，可以移除其对应的录制任务：
+When you no longer need to record the quotes of a certain contract, you can remove its corresponding recording task:
 
-1. 在【本地代码】编辑框中输入需要移除录制任务的合约本地代码（vt_symbol）；
-2. 点击右侧【K线记录】或者【Tick记录】对应的【移除】按钮移除相应录制任务。
+1. Enter the local code (vt_symbol) of the contract you want to remove in the [Local Code] edit box. 2;
+2. Click the [Remove] button on the right side of the [K-Line Record] or [Tick Record] to remove the corresponding recording task.
 
-移除成功，【K线记录列表】或者【Tick记录列表】下对应的录制任务信息会被移除，并在界面下方输出对应日志，如下图所示：
+If the removal is successful, the corresponding recording task information under [K-Line Record List] or [Tick Record List] will be removed, and the corresponding log will be output at the bottom of the interface, as shown in the following figure:
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/data_recorder/9.png)
