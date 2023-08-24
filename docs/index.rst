@@ -1,4 +1,4 @@
-VeighNa项目文档
+VeighNa Project Documentation
 ~~~~~~~~~
 
 .. toctree::

@@ -1,28 +1,28 @@
-# Ubuntu安装指南
+# Ubuntu Installation Guide
 
-## 检查Python
+## Check Python
 
-检查本地Python版本，需要需要3.7版本以上的版本，可在命令行运行python命令查看。
+Check the local Python version, you need to need version 3.7 or higher, you can run the python command at the command line to see.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/40.png)
 
 
-## 安装VeighNa
+### Install VeighNa
 
-### 下载源代码
+### Download source code
 
-下载VeighNa源代码（Ubuntu系统请选择tar.gz格式）：
+Download VeighNa source code (for Ubuntu system, please choose tar.gz format):
 
-- [VeighNa Github下载地址](https://github.com/vnpy/vnpy/releases)
-- [VeighNa Gitee下载地址](https://gitee.com/mirrors/vn-py/releases)
+- [VeighNa Github download address](https://github.com/vnpy/vnpy/releases)
+- [VeighNa Gitee download address](https://gitee.com/mirrors/vn-py/releases)
 
-下载完成后用tar命令解压文件，如下图所示。
+Unzip the file with the tar command after the download is complete, as shown below.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/41.png)
 
-### 执行一键安装
+### Perform a one-click installation
 
-安装VeighNa前需要先安装gcc编译器，用于编译C++类接口文件。在终端中运行以下命令：
+Before installing VeighNa, you need to install the gcc compiler for compiling C++ class interface files. Run the following command in the terminal:
 
 ```
 sudo apt-get update
@@ -33,74 +33,74 @@ sudo apt-get install build-essential
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/43.png)
 
-然后进入之前解压出来的VeighNa源代码目录（包含install.sh文件）
+Then go to the VeighNa source code directory (containing the install.sh file) that you extracted earlier
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/install/42.png)
 
-打开终端运行如下命令执行一键安装：
+Open a terminal and run the following command to perform a one-click installation:
 
 ```
 sudo bash install.sh
 ```
 
-请注意，如果python软连接名不为python，比如python3或python3.10，请执行如下命令：
+Note that if the python softlink name is not python, such as python3 or python3.10, run the following command:
 
 ```
-sudo bash install.sh 你的python软连接
+sudo bash install.sh your python softconnect
 ```
 
-一键安装过程整体分为3步：
+The overall one-click installation process is divided into 3 steps:
 
-1. 下载安装ta-lib库和numpy；
-2. 安装requirements.txt文件内的相关依赖库；
-3. 安装VeighNa本身。
+1. download and install the ta-lib library and numpy;
+2. install the relevant dependencies in the requirements.txt file;
+3. install VeighNa itself.
 
-> 若是在虚拟机上运行，请把内存调至4G以上，否则会报错内存不足。
+> If you are running on a virtual machine, please set the RAM to 4G or more, otherwise it will report insufficient memory.
 
 
-## 启动VeighNa Trader
+## Launch VeighNa Trader
 
-进入解压VeighNa源代码的目录下，在文件夹examples/veighna_trader中找到run.py文件。
+Go to the directory where you extracted the VeighNa source code and find the file run.py in the folder examples/veighna_trader.
 
-点击鼠标右键打开终端，输入如下命令即可启动VeighNa Trader：
+Click the right mouse button to open the terminal and enter the following command to start VeighNa Trader:
 
 ```
 python run.py 
 ```
 
-请注意run.py中包含了较多的启动加载项（交易接口和应用模块），请根据自己所用的操作系统以及实际的交易需求修改调整使用（若需加载接口，取消接口前注释符号即可）。
+Please note that run.py contains a lot of startup add-ons (trading interfaces and application modules), please modify and adjust them according to your operating system and actual trading needs (if you need to load interfaces, just cancel the comment symbols before the interfaces).
 
-请注意部分接口不支持Ubuntu系统，请不要加载。连接接口介绍详见交易接口篇（可查看接口支持的操作系统）。
+Please note that some interfaces do not support Ubuntu system, please do not load. Please refer to the chapter on trading interfaces for details on connecting interfaces (you can check the operating systems supported by the interfaces).
 
-> 如果启动时出现一些库版本不兼容的情况，可根据提示对这些库重新pip安装。
+> If some libraries are incompatible at startup, follow the instructions to re-pip install these libraries.
 
 
-## 常见问题
+## Frequently Asked Questions
 
-### Python开发环境问题处理
+### Problems with the Python development environment
 
-如果安装时出现由于找不到头文件导致的报错“command ‘gcc’ failed with exit status 1”，可能是没有正确安装Python开发环境造成的。可以在终端中运行下述命令尝试解决：
+If you get the error "command 'gcc' failed with exit status 1" when installing Python, you may not have installed the Python development environment correctly. You can try to fix it by running the following command in the terminal:
 
 ```
-sudo apt-get install 你的python软连接-dev
+sudo apt-get install your python softlink-dev
 ```
 
-### 图形驱动问题处理
+### Graphical driver troubleshooting
 
-在有图形界面的Ubuntu系统上启动，如果出现qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found的报错，可以在终端中运行下述命令来安装libxcb-xinerama0，尝试解决图形驱动的依赖问题：
+If you boot on an Ubuntu system with a graphical interface and get the error qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "" even though it was found, you can run the following command in the terminal to install libxcb-xinerama0 to try to resolve the problem: `` sudo apt-get install your python softwire-dev `` ### Graphical driver problem handling xinerama0 in the terminal to try to resolve the graphics driver dependency:
 
 ```
 sudo apt-get install libxcb-xinerama0
 ```
 
-### 中文编码问题处理
+### Chinese encoding issues
 
-如果Ubuntu系统语言是英文，在连接CTP接口这类使用中文语言的接口时，可能会出现下述报错：
+If the Ubuntu system language is English, the following error may occur when connecting to a CTP interface that uses the Chinese language:
 
 terminate called after throwing an instance of 'std::runtime_error'
 what(): locale::facet::_S_create_c_locale name not valid
 
-可以使用local-gen安装中文编码尝试解决：
+You can use local-gen to install Chinese encoding to try to solve the problem:
 
 ```
 sudo locale-gen zh_CN.GB18030

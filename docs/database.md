@@ -1,259 +1,265 @@
-# 数据库
+# Databases
 
-VeighNa Trader目前支持以下八种数据库：
+VeighNa Trader currently supports the following eight databases:
 
-## SQL类数据库简介
+## Introduction to SQL-like databases
 
-### SQLite（默认）
+### SQLite (default)
 
-SQLite是一个轻量的嵌入式数据库，无需安装和配置数据服务程序，是VeighNa的**默认数据库**。适合入门新手用户，其特点如下：
- - 存储在一个单一的跨平台的磁盘文件上；
- - 不需要在系统中配置、安装和管理；
- - 不需要一个单独的服务器进程。
+SQLite is a lightweight embedded database without the need to install and configure a data service program, and is VeighNa's **default database**. It is suitable for introductory novice users and has the following features:
+ - Stored on a single cross-platform disk file;
+ - Does not need to be configured, installed and managed on the system;
+ - Does not require a separate server process.
 
-#### SQLite配置字段
+#### SQLite Configuration Fields
 
-SQLite在VeighNa Trader中配置时，需填写以下字段信息：
+SQLite is configured in VeighNa Trader with the following field information:
 
-| 字段名             | 值 | 是否必填 |
-|---------           |---- | --- |
-|database.name     | sqlite | 可选(不填默认使用sqlite)
-|database.database   | 数据库文件（相对于trader目录） | 必填 |
+| Field Name | Value | Required or Not Required |
+|--------- |---- | --- |
+|database.name | sqlite | optional (not required defaults to sqlite)
+|database.database | database file (relative to the trader directory) | Required |
 
-SQLite配置示例如下所示：
+A sample SQLite configuration is shown below:
 
-| 字段名            | 值 |
-|---------           |---- |
-|database.name     | sqlite |
-|database.database   | database.db |
+|field name |value |
+|--------- |---- |
+|database.name | sqlite |
+|database.database | database.db |
 
 ### MySQL
 
-MySQL是目前主流的开源关系型数据库，其特点如下：
- - 文档材料丰富，社区及用户活跃；
- - 支持多种操作系统，多种开发语言；
- - 可替换其他高性能NewSQL数据库兼容实现（如TiDB）。
+MySQL is currently the dominant open source relational database with the following features:
+ - Rich documentation material, active community and users;
+ - Supports multiple operating systems and multiple development languages;
+ - Replaceable with other high-performance NewSQL database compatible implementations (e.g. TiDB).
 
-#### MySQL配置字段
+#### MySQL Configuration Fields
 
-MySQL在VeighNa Trader中配置时，需要填写以下字段信息：
+MySQL requires the following field information when configuring in VeighNa Trader:
 
-| 字段名            | 值 | 是否必填 |
-|---------           |---- | ---- |
-|database.name     | "mysql"| 必填 |
-|database.host       | 地址 | 必填 |
-|database.port       | 端口 | 必填 |
-|database.database   | 数据库名 | 必填 |
-|database.user       | 用户名 | 可选 |
-|database.password   | 密码 | 可选 |
+| Field Name | Value | Required or not |
+|--------- |---- | ---- |
+|database.name | "mysql" | Required |
+|database.host | Address | Required |database.port | "mysql" | Required |database.host | Address | Required
+|database.port | Port | Required |database.port | Port | Required |database.
+|database.database |Database Name | Required |database.user |Database Name | Required |database.user |Database Name | Required
+|database.user |User name | Optional |database.password |Optional
+|database.password | Password | Optional
 
-MySQL配置示例如下所示：
+A sample MySQL configuration is shown below:
 
-| 字段名            | 值 |
-|---------           |----  |
-|database.name     | mysql |
-|database.host       | localhost |
-|database.port       | 3306 |
-|database.database   | vnpy |
-|database.user       | root |
-|database.password   |      |
+|field.name |value |
+|--------- |---- |
+|database.name | mysql |
+|database.host |localhost |
+|database.port | 3306 |
+|database.database | vnpy | |database.user | vnpy | |database.user | vnpy
+|database.user |root |database.
+|database.password | |database.port | 3306
 
 ### PostgreSQL
 
-PostgreSQL是特性更为丰富的开源关系型数据库，只推荐熟手使用。相比于MySQL，其特点如下：
- - 采用多进程结构；
- - 支持通过扩展插件来新增功能。
+PostgreSQL is a feature-rich open source relational database that is only recommended for beginners. Compared to MySQL, it is characterized by the following features:
+ - Uses a multi-process structure;
+ - Support for adding new features through extension plug-ins.
 
-#### PostgreSQL配置字段
+#### PostgreSQL Configuration Fields
 
-PostgreSQL在VeighNa Trader中配置时，需要填写以下字段信息：
+When PostgreSQL is configured in VeighNa Trader, you need to fill in the following field information:
 
-| 字段名            | 值 | 是否必填 |
-|---------           |---- | ---- |
-|database.name     | "postgresql" | 必填 |
-|database.host       | 地址 | 必填 |
-|database.port       | 端口 | 必填 |
-|database.database   | 数据库名 | 必填 |
-|database.user       | 用户名 | 必填 |
-|database.password   | 密码 | 必填 |
+| Field Name | Value | Required or Not Required |
+|--------- |---- | ---- |
+|database.name | "postgresql" | Required |
+|database.host | address | Required |database.port | "postgresql" | required |
+|database.port | Port | Required |database.
+|database.database |Database Name | Required |database.user |Database Name | Required |database.user |Database Name | Required
+|database.user |User name | Required |database.password |Database.password |User name | Required
+|database.user |User name | Required |database.password |Password | Required
 
-PostgreSQL配置示例如下所示：
+A sample PostgreSQL configuration is shown below:
 
-| 字段名            | 值 |
-|---------           |----  |
-|database.name     | postgresql |
-|database.host       | localhost |
-|database.port       | 5432 |
-|database.database   | vnpy |
-|database.user       | postgres |
-|database.password   | 123456 |
+|field.name |value |
+|--------- |---- |
+|database.name | postgresql |
+|database.host | localhost |
+|database.port | 5432 ||database.
+|database.database | vnpy |database.user | postgresql
+|database.user |postgres |database.password |postgresql
+|database.password | 123456 |
 
-请注意，VeighNa不会主动为关系型数据库创建数据库，所以请确保所填写的database.database字段对应的数据库已经创建好了。若未创建数据库，请手动连接数据库并运行该命令：
+Please note that VeighNa does not actively create databases for relational databases, so please make sure that the database corresponding to the filled database.database field has been created. If the database has not been created, connect to it manually and run this command:
 ```sql
-    create database <填写的database.database>;
+    create database <filled database.database>;
 ```
 
 
-## 非SQL类数据库简介
+## Introduction to non-SQL databases
 
 ### MongoDB
 
-MongoDB是一个基于分布式文件储存（bson格式）的非关系型数据库，其特点如下：
- - 面向文档存储，操作比较简单；
- - 支持丰富的存储类型和数据操作；
- - 内置的热数据内存缓存实现更快的读写速度。
+MongoDB is a non-relational database based on distributed document storage (bson format) with the following characteristics:
+ - Document-oriented storage, operation is relatively simple;
+ - Supports rich storage types and data operations;
+ - Built-in hot data memory cache to achieve faster read and write speeds.
 
-#### MongoDB配置字段
+#### MongoDB Configuration Fields
 
-MongoDB在VeighNa Trader中配置时，需要填写以下字段信息：
+When MongoDB is configured in VeighNa Trader, you need to fill in the following field information:
 
-| 字段名               |   值 |          是否必填|
-|---------           |---- |  ---|
-|database.name     | "mongodb" | 必填 |
-|database.host       | 地址| 必填 |
-|database.port       | 端口| 必填 |
-|database.database   | 数据库名| 必填 |
-|database.user       | 用户名| 可选 |
-|database.password   | 密码| 可选 |
-|database.authentication_source   | [创建用户所用的数据库][AuthSource]| 可选 |
+| Field Name | Value | Required or not |
+|--------- |---- | ---|
+|database.name | "mongodb" | Required |
+|database.host | address | required |
+|database.port | Port | Required |database.
+|database.database | Database Name | Required |database.user | Database Name | Required |database.user | Database Name | Required
+|database.user |User name|Optional |database.password |Optional
+|database.password | Password | Optional |database.
+|database.authentication_source | [Database used to create the user][AuthSource]|| Optional |
 
-MongoDB的带认证配置示例如下所示：
+A sample MongoDB configuration with authentication is shown below:
 
-| 字段名             | 值 |
-|---------           |----  |
-|database.name     | mongodb |
-|database.host       | localhost |
-|database.port       | 27017 |
-|database.database   | vnpy |
-|database.user       | root |
-|database.password   |      |
-|database.authentication_source   | vnpy |
+| field name | value |
+|--------- |---- |
+|database.name | mongodb |
+|database.host | localhost |
+|database.port | 27017 |
+|database.database | vnpy |
+|database.user | root |
+|database.password | |
+|database.authentication_source | vnpy |
 
 [AuthSource]: https://docs.mongodb.com/manual/core/security-users/#user-authentication-database
 
 ### InfluxDB
 
-InfluxDB是专门针对时间序列数据存储设计的非关系型数据库，其特点如下：
-- 列式数据存储提供极高的读写效率；
-- 采用独立服务进程的模式运行，也能支持多进程的并发访问需求。
+InfluxDB is a non-relational database designed specifically for storing time-series data with the following features:
+- Columnar data storage provides extremely high read and write efficiency;
+- Running in the mode of independent service process, it can also support the concurrent access requirements of multiple processes.
 
-在安装时需要选择2.0版本的InfluxDB。
+You need to select version 2.0 of InfluxDB during installation.
 
-请注意，运行influxd.exe的cmd需要保持运行，如果关闭则会导致InfluxDB退出，或者也可以使用一些辅助工具将其注册为后台运行的Windows服务。
+Please note that the cmd running influxd.exe needs to be kept running, if it is closed, it will cause InfluxDB to exit, or you can use some auxiliary tools to register it as a Windows service running in the background.
 
-#### InfluxDB配置字段
-InfluxDB在VeighNa Trader中配置时，需要填写以下字段信息：
+#### InfluxDB configuration fields
+When InfluxDB is configured in VeighNa Trader, the following fields need to be filled in:
 
-| 字段名            | 值 | 是否必填 |
-|---------           |---- | ---- |
-|database.name     | "influxdb" | 必填 |
-|database.host       | 地址| 必填 |
-|database.port       | 端口| 必填 |
-|database.database   | 数据库名| 必填 |
-|database.user       | 用户名| 必填 |
-|database.password   | 密码| 必填 |
+| Field Name | Value | Required or not |
+|--------- |---- | ---- |
+|database.name | "influxdb" | Required |
+|database.host | Address | Required |
+|database.port | "influxdb" | Required |
+|database.host | Address | Required
+|database.port | Port | Required |
+|database.database | Database name | Required |
+|database.user | Database name | Required |
+|database.user | Database name | Required
+|database.user |User name | Required |
+|database.password |User name |Required
+|database.user |User name | Required |
+|database.password |Password | Required |
 
-InfluxDB配置示例如下所示：
+A sample InfluxDB configuration is shown below:
 
-| 字段名             | 值 |
-|---------           |----  |
-|database.name     | influxdb |
-|database.host       | localhost |
-|database.port       | 8086 |
-|database.database   | vnpy |
-|database.user       | root |
-|database.password   | 12345678 |
+|field name |value |
+|--------- |---- |
+|database.name | influxdb |
+|database.host | localhost |
+|database.port | 8086 |
+|database.database |vnpy |
+|database.user |root |
+|database.password | 12345678 |
 
 ### DolphinDB
 
-DolphinDB是浙江智臾科技有限公司研发的一款高性能分布式时序数据库，特别适用于对速度要求极高的低延时或实时性任务，其特点如下：
-- 列式分析型（OLAP）数据库，采用混合引擎（基于内存和硬盘），充分利用缓存来加速；
-- 原生分区表存储，合理的分区方案可以让CPU多线程并行加载每个分区内的数据；
-- 支持高效的数据压缩，显著减小硬盘存储空间的同时，还能大幅降低IO通讯的开销。
+DolphinDB is a high-performance distributed time-series database developed by Zhejiang Zhi Yu Technology Co., Ltd. It is especially suitable for low-latency or real-time tasks that require high speed, and is characterized by the following features:
+- Columnar analytical (OLAP) database with a hybrid engine (based on memory and hard disk), taking full advantage of the cache to accelerate;
+- Native partitioned table storage , reasonable partitioning scheme allows the CPU multi-threaded parallel loading of data within each partition ;
+- Support for efficient data compression , significantly reducing hard disk storage space at the same time , but also significantly reduce the overhead of IO communication .
 
-尽管DolphinDB是商业软件，但是也提供了免费的社区版，在安装时需要选择[2.0 Beta](https://github.com/dolphindb/release/blob/master/2.00/README.md)版本。
+Although DolphinDB is commercial software, a free community edition is also available. You need to select the [2.0 Beta](https://github.com/dolphindb/release/blob/master/2.00/README.md) version during installation.
 
-请注意：
- - 运行dolphindb.exe的cmd需要保持运行，如果关闭则会导致DolphinDB退出，或者也可以使用一些辅助工具将其注册为后台运行的Windows服务；
- - 因为DolphinDB目前不支持Python3.10，所以VeighNa Studio 3.0.0没有提供DolphinDB支持。
+Please note:
+ - The cmd that runs dolphindb.exe needs to be kept running, if it is closed it will cause DolphinDB to exit, or you can also use some auxiliary tools to register it as a Windows service running in the background;
+ - Because DolphinDB does not currently support Python 3.10, VeighNa Studio 3.0.0 does not provide DolphinDB support.
 
-#### DolphinDB配置字段
+#### DolphinDB Configuration Fields
 
-需要填写以下字段：
+The following fields need to be filled in:
 
-| 字段名        | 值 | 是否必填 |
-|---------          |---- | ---- |
-|database.name      | "dolphindb"| 必填 |
-|database.host      | 地址 | 必填 |
-|database.port      | 端口 | 必填 |
-|database.database  | 数据库名 | 必填 |
-|database.user      | 用户名 | 必填 |
-|database.password  | 密码 | 必填 |
+| Field Name | Value | Required or not |
+|--------- |---- | ---- |
+|database.name | "dolphindb" | Required |
+|database.host |Address | Required |
+|database.port | Port | Required |
+|database.database | Database Name | Required |
+|database.user |User name | Required |
+|database.password |Password | Required
 
-DolphinDB配置示例如下所示：
+A sample DolphinDB configuration is shown below:
 
-| 字段名            | 值 |
-|---------          |----  |
-|database.name      | dolphindb |
-|database.host      | localhost |
-|database.port      | 8848 |
-|database.database  | vnpy |
-|database.user      | admin |
-|database.password  | 123456|
+|field.name |value |
+|--------- |---- |
+|database.name | dolphindb |
+|database.host | localhost |
+|database.port | 8848 |
+|database.database | vnpy |
+|database.user | admin |
+|database.password |123456|
 
 ### Arctic
 
-Arctic是由英国量化对冲基金Man AHL基于MongoDB开发的高性能金融时序数据库，其特点如下：
-- 支持直接存储pandas的DataFrame和numpy的ndaaray对象；
-- 允许对数据进行版本化管理（类似于数据库中的git），便于因子挖掘过程中的数据迭代管理；
-- 基于分块化存储和LZ4压缩，在网络和磁盘IO方面节省大量资源，实现超高性能的数据查询。
+Arctic is a high-performance financial time-series database developed by Man AHL, a UK quantitative hedge fund, based on MongoDB with the following features:
+- Supports direct storage of DataFrame in pandas and ndaaray objects in numpy;
+- Allows versioning of data (similar to git in a database), facilitating the iterative management of data in the factor mining process;
+- Based on chunked storage and LZ4 compression, it saves a lot of resources in terms of network and disk IO, and achieves ultra-high performance data query.
 
-请注意，因为Arctic目前不支持Python3.10，所以VeighNa Studio 3.0.0没有提供Arctic支持。
+Please note that VeighNa Studio 3.0.0 does not provide Arctic support because Arctic does not currently support Python 3.10.
 
-#### Artic配置字段
+#### Artic Configuration Fields
 
-| 字段名          | 值 | 是否必填 |
-|---------        |---- | ---- |
-|database.name    | "arctic"| 必填 |
-|database.host    | 地址 | 必填 |
-|database.port    | 端口 | 必填 |
+| field name | value | required or not |
+|--------- |---- | ---- |
+|database.name | "arctic" | Required |
+|database.host |Address | Required |
+|database.port | Port | Required |
 
-Arctic配置示例如下所示：
+A sample Arctic configuration is shown below:
 
-| 字段名          | 值 |
-|---------        |----  |
-|database.name    | arctic |
-|database.host    | localhost |
-|database.database    | vnpy |
+|field.name |value |
+|--------- |---- |
+|database.name | arctic |
+|database.host | localhost |
+|database.database | vnpy |
 
 ### Level DB
-LevelDB是由Google推出的高性能Key/Value数据库，其特点如下：
-- 定位为通用型数据存储方案；
-- 基于LSM算法实现进程内存储引擎；
-- 支持数十亿级别的海量数据。
+LevelDB is a high-performance Key/Value database introduced by Google with the following features:
+- Positioned as a general-purpose data storage solution;
+- Based on the LSM algorithm to achieve in-process storage engine;
+- Support for billions of levels of massive data.
 
-请注意，因为LevelDB目前不支持Python3.10，所以VeighNa Studio 3.0.0没有提供LevelDB支持。
+Please note that VeighNa Studio 3.0.0 does not provide LevelDB support because LevelDB does not support Python 3.10 at this time.
 
-#### LevelDB配置字段
-| 字段名            | 值 | 是否必填 |
-|---------          |---- | ---- |
-|database.name      | "leveldb"| 必填 |
-|database.database  | 数据库名 | 必填 |
-|database.port    | 端口 | 必填 |
+#### LevelDB Configuration Fields
+| field name | value | required or not |
+|--------- |---- | ---- |
+|database.name | "leveldb" | Required |
+|database.database | "leveldb" | Required |
+|database.port | Port | Required |
 
-LevelDB配置示例如下所示：
+A sample LevelDB configuration is shown below:
 
-| 字段名            | 值 |
-|---------          |  ----  |
-|database.name      | leveldb |
-|database.database  | vnpy_data |
+|field.name |value |
+|--------- | ---- |
+|database.name | leveldb |
+|database.database | vnpy_data |
 
 
-## 数据库配置（以MySQL为例）
+## Database Configuration (Using MySQL as an Example)
 
-本文档以MySQL为例，介绍数据库的配置过程。
+This document describes the database configuration process using MySQL as an example.
 
-首先在[MySQL官网](https://dev.mysql.com/downloads/)下载Windows版本安装包【MySQL Installer for Windows】，如下图所示：
+First download the Windows version of the installation package [MySQL Installer for Windows] from the [MySQL official website](https://dev.mysql.com/downloads/) as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/1.png)
 
@@ -261,63 +267,63 @@ LevelDB配置示例如下所示：
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/3.png)
 
-下载完成后得到msi格式的安装包，双击打开后选择【Full】模式安装MySQL，一路点击【Next】按钮即可完成安装。
+After the download is completed, you will get the installation package in msi format, double-click it to open it and select [Full] mode to install MySQL, and click the [Next] button all the way to complete the installation.
 
-![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/4.png)
+Click on the [Next] button to complete the installation. [](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/4.png)
 
-安装过程中将会自动从网站下载相关组件，先点击【Execute】按钮来补全，再点击【Next】按钮。
+The installation process will automatically download related components from the website, first click [Execute] button to complete, and then click [Next] button.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/5.png)
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/6.png)
 
-安装过程中将会要求输入3次密码，这里为了方便演示，我们将密码设置为1001，请在自己安装的过程中使用更加复杂安全的密码。  
-安装完毕后会自动打开MySQL的图形管理工具MySQL WorkBench，点击菜单栏【Database】->【Connect to Database】，如下图所示：
+The installation process will ask for a password 3 times, here for the convenience of demonstration, we will set the password to 1001, please use a more complex and secure password in your own installation process.  
+After the installation is complete, MySQL WorkBench, the graphical management tool for MySQL, will be opened automatically. Click [Database] -> [Connect to Database] in the menu bar, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/7.png)
 
-在弹出的对话框中，直接选择默认数据库Local Instance MySQL，然后点击【OK】按钮连接MySQL数据库服务器。
+In the pop-up dialog box, directly select the default database Local Instance MySQL, and then click [OK] button to connect to the MySQL database server.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/8.png)
 
-在自动打开的数据库管理界面中，点击下图中菜单栏红色方框的按钮，来创建新的数据库。在【Name】中输入“vnpy”，然后点击下方的【Apply】按钮确认。
+In the database management interface that opens automatically, click the button in the red box in the menu bar in the figure below to create a new database. Enter "vnpy" in [Name], and then click the [Apply] button below to confirm.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/9.png)
 
-在之后弹出的数据库脚本执行确认对话框中，同样点击【Apply】即可，这样就完成了在MySQL WorkBench的所有操作。
+In the Database Script Execution Confirmation dialog box that pops up, click [Apply] as well, and you have completed all operations in MySQL WorkBench.
 
-随后启动VeighNa Trader，点击菜单栏的【配置】，设置数据库相关字段：
+After that, start VeighNa Trader, click [Configuration] in the menu bar, and set the database related fields:
 
-- name要改成mysql（请注意大小写）；
-- database改成vnpy；
-- host为本地IP，即localhost或者127.0.0.1；
-- port为MySQL的默认端口3306；
-- user用户名为root
-- password密码则是之前设置的1001。
+- name should be changed to mysql (please note the case);
+- database should be changed to vnpy;
+- host is the local IP, i.e. localhost or 127.0.0.1;
+- port is MySQL's default port 3306;
+- The port is MySQL's default port 3306. The user username is root.
+- The password is the same as 1001.
 
 ```json
-        database.name: mysql
-        database.database: vnpy
-        database.host: localhost
-        database.port: 3306
-        database.user: root
-        database.password: 1001
+    database.name: mysql
+    database.database: vnpy
+    database.host: localhost
+    database.port: 3306
+    database.user: root
+    database.user: root database.password: 1001
 ```
 
-填写完毕后如下图所示：
+After filling in the fields, the following image is shown:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/database/22.png)
 
-保存完成配置修改后，重启VeighNa Trader来启用新的数据库配置。重启后，在打开VeighNa Trader的过程中若无报错提示，则说明MySQL数据库配置成功。 
+After saving the configuration changes, restart VeighNa Trader to enable the new database configuration. After restarting, if there are no errors when opening VeighNa Trader, the MySQL database configuration is successful. 
 
 
-## 脚本使用
+## Scripting
 
-脚本使用前，请先按照上文配置好使用的数据库, 使用时调用相应的函数接口。
+Before using the script, please configure the database according to the above, and call the corresponding function interface when using the script.
 
-### 脚本加载
+### Script loading
 
-#### 在脚本中加载所需的包和数据结构
+#### loads the required packages and data structures into the script.
 
 ```python 3
 from datetime import datetime
@@ -326,82 +332,82 @@ from vnpy.trader.constant import Exchange, Interval
 from vnpy.trader.database import get_database
 from vnpy.trader.object import BarData, TickData
 
-# 获取数据库实例
+# Get the database instance
 database = get_database()
 ```
 
-#### 配置所需合约的具体参数数据
+#### Configure the specific parameter data for the desired contract
 
 ```python 3
-# 合约代码，888为米筐的连续合约，仅用于示范，具体合约代码请根据需求自行更改
+# Contract code, 888 is a continuous contract for rice baskets, only for demonstration purposes, please change the contract code according to your needs.
 symbol = "cu888"
 
-# 交易所，目标合约的交易所
+# Exchange, the exchange of the target contract
 exchange = Exchange.SHFE
 
-# 历史数据开始时间，精确到日
+# Historical data start time, accurate to day
 start = datetime(2019, 1, 1)
 
-# 历史数据结束时间，精确到日
+# Historical data end time, to the nearest day
 end = datetime(2021, 1, 20)
 
-# 数据的时间粒度，这里示例采用日级别
+# Time granularity of the data, here the example uses day level
 interval = Interval.DAILY
 ```
 
-#### 数据库的读取操作
+#### Database read operation
 
-如数据库指定时间段没有数据，返回空列表
+Returns an empty list if there is no data in the database for the specified period of time.
 
 ```python 3
-# 读取数据库中k线数据
+# Read k-line data from the database
 bar1 = database.load_bar_data(
     symbol=symbol,
     exchange=exchange,
     interval=interval,
-    start=start,
+    start=start, end=end
     end=end
 )
 
-# 读取数据库中tick数据
+# Read the tick data from the database
 tick1 = database.load_tick_data(
     symbol=symbol,
-    exchange=exchange,
-    start=start,
+    symbol=symbol, exchange=exchange.
+    start=start, end=end
     end=end
 )
 ```
 
-#### 数据库的写入操作
+#### Database write operations
 
-请注意，示例中的**bar_data**和**tick_data**均未在示例中展现获取和转换方法。如需以脚本方式写入，请自行参考源码或其他途径，转换成示例中的数据结构。
+Please note that **bar_data** and **tick_data** are not shown in the example. If you need to write them as script, please refer to the source code or other ways to convert them to the data structure in the example.
 
 ```python 3
-# 需要存入的k线数据，请自行获取并转换成所需的形式
+# The k-line data to be deposited, please get it and convert it to the required form.
 bar_data: List[BarData] = None
 
 database.save_bar_data(bar_data)
 
-# 需要存入的k线数据，请自行获取并转换成所需的形式
+# k-line data to be saved, please get it yourself and convert it to the required form.
 tick_data: List[TickData] = None
 
-# 将tick数据存入数据库
+# Save the tick data to the database
 database.save_tick_data(tick_data)
 ```
 
-#### 数据库删除操作
+#### Database deletion operation
 
-无法恢复，请谨慎操作
+Cannot be recovered, please proceed with caution
 
 ```python 3
-# 删除数据库中k线数据
+# Delete k-line data from database
 database.delete_bar_data(
     symbol=symbol,
     exchange=exchange,
     interval=interval
 )
 
-# 删除数据库中tick数据
+# Delete tick data from the database
 database.delete_tick_data(
     symbol=symbol,
     exchange=exchange

@@ -403,7 +403,7 @@ from vnpy_ctastrategy import (
 
 ```python 3
 
-    author = "用Python的交易员"
+    author = "Trader in Python"
 
     boll_window = 18
     boll_dev = 3.4
@@ -524,7 +524,7 @@ CtaTemplate中以on开头的函数称为回调函数，在编写策略的过程�
         """
         Callback when strategy is inited.
         """
-        self.write_log("策略初始化")
+        self.write_log("Strategy initialization")
         self.load_bar(10)
 ```
 
@@ -545,7 +545,7 @@ CtaTemplate中以on开头的函数称为回调函数，在编写策略的过程�
         """
         Callback when strategy is started.
         """
-        self.write_log("策略启动")
+        self.write_log("Strategy started")
 ```
 
 调用策略的on_start函数启动策略后，策略的trading状态变为【True】，此时策略才能够发出交易信号。
@@ -563,7 +563,7 @@ CtaTemplate中以on开头的函数称为回调函数，在编写策略的过程�
         """
         Callback when strategy is stopped.
         """
-        self.write_log("策略停止")
+        self.write_log("Strategy stopped")
 ```
 
 调用策略的on_stop函数停止策略后，策略的trading状态变为【False】，此时策略就不会发出交易信号了。

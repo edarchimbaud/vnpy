@@ -75,7 +75,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
     * Overseas Markets
 
-        * Interactive Brokers ([ib](https://www.github.com/vnpy/vnpy_ib)): overseas securities, futures, options, precious metals, etc.
+        * Interactive Brokers ([ib](https://www.github.com/edarchimbaud/vnpy_ib)): overseas securities, futures, options, precious metals, etc.
 
         * Edson 9.0 Forex ([tap](https://www.github.com/vnpy/vnpy_tap)): Overseas Futures
 
@@ -89,9 +89,9 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
 3. Trading applications (apps) covering the following types of quantitative strategies:
 
-    * [cta_strategy](https://www.github.com/vnpy/vnpy_ctastrategy): CTA strategy engine module, while maintaining ease-of-use, allows users to control at a fine-grained level (to reduce slippage, realize high-frequency strategies) the reported withdrawal behavior of delegates during the operation of CTA-type strategies.
+    * [cta_strategy](https://github.com/edarchimbaud/vnpy_ctastrategy): CTA strategy engine module, while maintaining ease-of-use, allows users to control at a fine-grained level (to reduce slippage, realize high-frequency strategies) the reported withdrawal behavior of delegates during the operation of CTA-type strategies.
 
-    * [cta_backtester](https://www.github.com/vnpy/vnpy_ctabacktester): CTA strategy backtesting module, without the need to use Jupyter Notebook, directly using the graphical interface for strategy backtesting analysis, parameter optimization and other related work.
+    * [cta_backtester](https://www.github.com/edarchimbaud/vnpy_ctabacktester): CTA strategy backtesting module, without the need to use Jupyter Notebook, directly using the graphical interface for strategy backtesting analysis, parameter optimization and other related work.
 
     * [spread_trading](https://www.github.com/vnpy/vnpy_spreadtrading): spread trading module, support for customized spreads, real-time calculation of spread quotes and positions, support for spread algorithmic trading and automated spread strategy two models
 
@@ -272,10 +272,10 @@ VeighNa uses Github to host its source code, if you wish to contribute code plea
 
 2. Fork [VeighNa](https://github.com/vnpy/vnpy) - Click the **Fork** button in the upper right corner.
 
-3. Clone your own fork: ```git clone https://github.com/$userid/vnpy.git``''
-	* If your fork is outdated, you need to sync it manually: [sync method](https://help.github.com/articles/syncing-a-fork/)
+3. Clone your own fork: ```git clone https://github.com/$userid/vnpy.git```.
+    * If your fork is outdated, you need to sync it manually: [sync method](https://help.github.com/articles/syncing-a-fork/)
 
-4. Create your own feature branch from **dev**: ```git checkout -b $my_feature_branch dev``` * If your fork is out of date, you need to sync it manually: [sync method]()
+4. Create your own feature branch from **dev**: ```git checkout -b $my_feature_branch dev```.
 
 5. Make changes to $my_feature_branch and push them to your fork.
 
@@ -285,7 +285,7 @@ VeighNa uses Github to host its source code, if you wish to contribute code plea
 
 When submitting code, please observe the following rules to improve code quality:
 
-  * Check your code with [flake8](https://pypi.org/project/flake8/) to make sure there are no errors and warnings. just run ```flake8`` in the project root directory.
+  * Check your code with [flake8](https://pypi.org/project/flake8/) to make sure there are no errors and warnings. just run ```flake8``` in the project root directory.
 
 ## Other content
 

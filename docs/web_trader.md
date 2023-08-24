@@ -1,81 +1,83 @@
-# WebTrader - Web服务器模块
+# WebTrader - Web Server Module
 
-## 功能简介
+## Functional Description
 
-WebTrader是用于**Web应用后端服务**的功能模块，用户可以通过浏览器（而非PyQt桌面端）来运行管理VeighNa量化策略交易。
+WebTrader is a functional module for **Web Application Backend Service** that allows users to run and manage VeighNa quantitative strategy trades via a browser (not the PyQt desktop).
 
-## 架构设计
+## Architecture Design
 
-WebTrader采用了FastAPI作为后端服务器，支持REST主动请求调用和WebSocket被动数据推送，运行时整体框架图如下：
+WebTrader uses FastAPI as the backend server, supports REST active request calls and WebSocket passive data push, the overall runtime framework diagram is as follows:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_1.png)
 
-后端服务包括两个独立的进程：
-- 策略交易进程
-  - 运行VeighNa Trader的进程，负责所有策略交易功能的运行；
-  - 启动了RpcServer用于对Web服务进程功能调用；
-- Web服务进程
-  - 运行了FastAPI的进程，负责对外提供Web访问的服务；
-  - 启动了RpcClient用于调用策略交易进程的相关功能。
+The backend service consists of two separate processes:
+- Strategy Trading Process
+  - The process running VeighNa Trader is responsible for all strategy trading functions;
+  - The RpcServer is started for function calls to the Web service process;
+- Web service process
+  - Running the FastAPI process, which is responsible for providing external Web access services;
+  - RpcClient is started for calling the functions of the strategy trading process.
 
-从网页端到策略交易进程的双向通讯模式包括：
-- 主动请求调用（订阅行情、挂撤单、查询数据）
-  - 浏览器发起REST API调用（访问某个URL地址提交数据）到Web服务进程；
-  - Web服务进程收到后，转换为RPC请求（Req-Rep通讯模式）发送给策略交易进程；
-  - 策略交易进程执行请求处理后，返回结果给Web服务进程；
-  - Web服务进程返回数据给浏览器。
-- 被动数据推送（行情推送、委托推送）
-  - 浏览器发起Websocket连接到Web服务进程；
-  - 策略交易进程通过RPC推送（Pub-Sub通讯），将数据推送给Web服务进程；
-  - Web服务进程收到后，将数据通过Websocket API实时推送给浏览器（JSON格式）。
+The two-way communication mode from the web side to the strategy trading process includes:
+- unsolicited calls (subscribe to quotes, pending withdrawal orders, query data)
+  - The browser initiates a REST API call (accessing a URL address to submit data) to the web service process;
+  - Web service process received, converted to RPC requests (Req-Rep communication mode) sent to the strategy trading process;
+  - The strategy transaction process executes the request and returns the result to the Web service process;
+  - Web service process returns data to the browser.
+- Passive data push (quote push, commission push)
+  - The browser initiates a Websocket connection to the Web service process;
+  - The strategy trading process pushes the data to the Web service process through RPC push (Pub-Sub communication);
+  - The Web service process receives and pushes the data to the browser in real time (JSON format) via Websocket API.
 
-## 加载启动
+## Load startup
 
-### VeighNa Station加载
+### Loading VeighNa Station
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【WebTrader】。
+After starting to log in VeighNa Station, click the [Trading] button and check [WebTrader] in the [Application Module] column of the configuration dialog box.
 
-### 脚本加载
+### Script Loading
 
-在启动脚本中添加如下代码：
+Add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+### Write it at the top
 from vnpy_webtrader import WebTraderApp
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_app(WebTraderApp)
 ```
 
-### 启动模块
+### Start the module
 
-在启动模块之前，请先连接登录交易接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：
+Before starting the module, please connect to the login trading interface (see the Connecting to the Interface section of the Basic Usage chapter for details on how to connect). Start the module after you see "Contract Information Query Successful" in the [Log] column of VeighNa Trader main interface, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/market_radar/1.png)
 
-成功连接交易接口后，在菜单栏中点击【功能】-> 【Web服务】，或者点击左侧按钮栏的图标：
+After successfully connecting to the trading interface, click [Functions] -> [Web Services] in the menu bar, or click the icon in the left button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_0.png)
 
-即可进入RPC服务模块的UI界面，如下图所示：
+You can enter the UI interface of RPC service module, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_3.png)
 
-此时系统中运行的只包括策略交易进程，左上角区域的服务器配置选项包括：
-- 用户名和密码：从网页端登录Web应用时所用的用户名和密码，使用时请修改为自己想用的用户名和密码（通过启动目录.vntrader下的web_trader_setting.json修改），请注意这里的用户名和密码与底层交易接口无关；
-- 请求和订阅地址：架构图中Web服务进程和策略交易进程之间，进行RPC通讯的地址，注意端口不要和其他程序冲突即可。
+At this time, only the strategy transaction process is running in the system, and the server configuration options in the upper left area include:
+- User name and password: the user name and password used when logging into the web application from the web side, when using it, please modify it to the user name and password you want to use (through the startup directory.vntrader under the web_trader_setting.json to modify it), please note that the user name and password here have nothing to do with the underlying trading interface;
+- Request and subscription address: the address for RPC communication between the web service process and the strategy trading process in the architecture diagram, just be careful that the port does not conflict with other programs.
 
-点击启动按钮后，会根据用户输入的配置信息在系统后台启动Web服务进程，同时在右侧区域输出Fast API运行过程中的相关日志信息。
+After clicking the Start button, the Web service process will be started in the system background according to the configuration information input by the user, and the log information related to the running process of Fast API will be output in the right area at the same time.
 
 
-## 接口演示
-在启动Web服务后，在浏览器打开网址<http://127.0.0.1:8000/docs>，即可看到如下图所示的接口文档网页：
+## Interface Demo
+
+After starting the web service, open the URL <http://127.0.0.1:8000/docs> in the browser, you can see the interface documentation page as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_2.png)
 
-这里包含了目前WebTrader支持的相关接口信息，下面结合vnpy_webtrader项目下提供的[Jupyter Notebook](https://github.com/vnpy/vnpy_webtrader/blob/main/script/test.ipynb)进行相关的接口演示。
+Here contains relevant interface information currently supported by WebTrader, the following combines with the [Jupyter Notebook](https://github.com/vnpy/vnpy_webtrader/blob/main/script/test. ipynb).
 
-### 获得令牌（token）
+### Getting a token
+
 ```python 3
 import requests
 import json
@@ -85,55 +87,61 @@ username = "vnpy"
 password = "vnpy"
 
 r = requests.post(
-    url + "token",
+    url + "token", data={"username": username, "password": password}, "password": vnpy
     data={"username": username, "password": password},
     headers={"accept": "application/json"}
 )
 token = r.json()["access_token"]
 ```
-首先导入相应的模块requests和json，接着定义url和用户名和密码，通过requests的post方法传入相应参数就能够获得令牌（token），后续访问使用各种接口直接传入token即可。
 
-### 行情订阅
+First of all, import the corresponding module requests and json, then define the url and username and password, through the requests of the post method to pass the appropriate parameters will be able to obtain the token (token), subsequent access to use a variety of interfaces directly into the token can be.
+
+### Quote subscription
+
+```python 3
+r = requests.post(url + "tick/" + "cu2112.SHFE", headers={"Authorization": "Bearer " + token})
 ```
-r = requests.post(url + "tick/" + "cu2112.SHFE", headers={"Authorization":"Bearer " + token})
-```
-通过上述命令可实现对合约cu2112.SHFE的订阅，同时可以在图形界面收到该合约的行情数据推送，入下图所示：
+
+With the above command, you can subscribe to the contract cu2112.SHFE and at the same time, you can receive the contract's tick data push in the graphical interface, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_4.png)
 
-###  批量查询
+### Batch query
+
 ```python 3
-# 查询函数
-def query_test(name):
-    """查询对应类型的数据"""
+### Query function
+def query_test(name).
+    """Query the corresponding type of data""""
     r = requests.get(
         url + name,
         headers={"Authorization": "Bearer " + token}
     )
     return r.json()
 
-# 批量查询
-for name in ["tick", "contract", "account", "position", "order", "trade"]:
+# Batch query
+for name in ["tick", "contract", "account", "position", "order", "trade"].
     data = query_test(name)
     print(name + "-" * 20)
-    if data:
+    print(name + "-" * 20) if data.
         print(data[0])
 ```
-如有需要，同样可以通过发出主动请求查询相关的数据，比如tick数据、合约数据、账户数据、 持仓数据、委托数据以及成交数据。
+
+If necessary, you can also send unsolicited requests to query related data, such as tick data, contract data, account data, position data, order data, and transaction data.
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_5.png)
 
-### 委托测试
+### Delegation test
+
 ```python 3
-# 委托测试
+### Delegation test
 req = {
     "symbol": "cu2112",
     "exchange": "SHFE",
-    "direction": "多",
-    "type": "限价",
-    "volume": 1,
-    "price": 71030,
-    "offset": "开",
+    "direction": "multiple",
+    "type": "Limit", "volume": 1, "type": "SHFE", "direction": "Multi", "type": "Limit", "volume": 1, "volume": 1
+    "volume": 1, "price": 71030
+    "price": 71030, "offset": "open", "price": 71030, "price": 71030
+    "offset": "on", "reference": "WebTraffic", "reference": "WebTraffic": "WebTraffic": "WebTraffic".
     "reference": "WebTrader"
 }
 
@@ -146,41 +154,46 @@ vt_orderid = r.json()
 
 print(vt_orderid)
 ```
-下单后同样能在图形化界面看到委托信息，如下图所示：
+
+After placing an order you can also see the delegation information in the graphical interface, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_6.png)
 
-### 撤单测试
+### Withdrawal test
+
 ```python 3
-# 撤单测试
+### Withdrawal test
 r = requests.delete(
     url + "order/" + vt_orderid,
     headers={"Authorization": "Bearer " + token}
 )
 ```
-如果想将之前下的委托撤销，可以发送主动请求，结果同样会在图形化界面更新，如下图所示：
+
+If you want to undo a previously placed delegation, you can send an unsolicited request, and the result will be updated in the GUI as well, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_7.png)
 
-### Websocket测试
+### Websocket test
 
 ```python 3
-# Weboscket测试
+## Weboscket test
 from websocket import create_connection
 
 ws = create_connection("ws://127.0.0.1:8000/ws/?token=" + token)
 
-while True:
-    result =  ws.recv()
+while True: result = ws.recv()
+    result = ws.recv()
     print("Received '%s'" % result)
 
 ws.close()
 ```
-通过Websocket可以被动接收策略交易进程推送过来的行情数据和委托数据等，如下图所示：
+
+Websocket can be used to passively receive quotes, commissions, etc. pushed by the strategy trading process, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/web_trader/web_trader_8.png)
 
-## 后续计划
-WebTrader仅实现了Web应用的后端（提供了浏览器访问数据的接口），而前端页面（也就是浏览器中看到的网页）则按照之前的计划交给社区用户来实现，欢迎大家贡献代码。
+## Follow-up plan
 
-同时WebTrader目前只支持基础的手动交易功能，后续将会逐渐加上策略交易应用相关的管理功能（比如CtaStrategy的相关调用）。
+WebTrader only implements the back-end of the web application (providing an interface for the browser to access the data), while the front-end page (i.e. the web page seen in the browser) is left to the community users to implement according to the previous plan, and you are welcome to contribute code.
+
+Meanwhile, WebTrader only supports basic manual trading functions, and will gradually add the management functions related to strategy trading applications (such as CtaStrategy related calls).

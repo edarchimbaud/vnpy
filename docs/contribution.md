@@ -1,76 +1,77 @@
-# 贡献代码
+# Contribute code
 
 ---
-## 创建PR
-我们欢迎任何人贡献代码到VeighNa。  
+## Create PR
+We welcome anyone to contribute code to VeighNa.  
 
-如果希望贡献代码请使用Github的PR(Pull Request)的流程。
+If wishing to contribute code please use Github's PR (Pull Request) process.
 
-PR流程大致如下：
+The PR process is roughly as follows:
 
 ---
-1. [创建 Issue][CreateIssue] - 对于较大的改动(如新功能，大型重构等)建议先开issue讨论一下， 较小的improvement(如文档改进，bugfix等)直接发PR即可
+1. [Create Issue][CreateIssue] - For larger changes (e.g. new features, major refactoring, etc.) it is recommended to open an issue to discuss them first, and for smaller improvements (e.g. documentation improvements, bugfixes, etc.) it is sufficient to send a PR.
 
-2. Fork [VeighNa][#GithubVnpy] - 点击右上角**Fork**按钮
+2. Fork [VeighNa][#GithubVnpy] - Click the **Fork** button in the upper right corner.
 
-3. Clone你自己的fork: ```git clone https://github.com/$userid/vnpy.git```
+3. Clone your own fork: ```git clone https://github.com/$userid/vnpy.git```
 	
-	> 如果你的fork已经过时，需要手动[sync][GithubDocForSync]
+	> If your fork is outdated, you need to manually [sync][GithubDocForSync].
 	
-4. 从**dev**创建你自己的branch: ```git checkout -b $my_feature_branch dev```
+4. Create your own branch from **dev**: ```git checkout -b $my_feature_branch dev``` > If your fork is out of date, you need to [sync][GithubDocForSync] it manually.
 
-5. 在$my_feature_branch上修改并将修改push到你Fork之后的仓库上
+5. Make changes to $my_feature_branch and push them to your forked repository.
 
-6. 创建从你的fork的$my_feature_branch分支到主项目的**dev**分支的[Pull Request]:  
- [点开这里][CreatePR] ，再点击**compare across forks**，选择需要的fork和branch创建PR
-
----
-
-创建完PR之后请耐心等待：我们一旦有空就会检查PR，一旦你的代码有用且[符合要求](#代码风格)，就会被合并！
-
+6. Create a [Pull Request] from your forked $my_feature_branch branch to the main project's **dev** branch.  
+ [Click here][CreatePR], then click **compare across forks** and select the required fork and branch to create the PR.
 
 ---
-## 代码风格
-在为VeighNa写代码的时候，需要遵循一些基本的规则，否则你的代码可能无法被merge。
-这些规则包括：
-- [贡献代码](#贡献代码)
-  - [创建PR](#创建pr)
-  - [代码风格](#代码风格)
-    - [命名规则](#命名规则)
-    - [代码格式](#代码格式)
-    - [代码质量检查](#代码质量检查)
+
+Please be patient after creating the PR: we will check the PR as soon as we have time, and once your code is useful and [meets the requirements](#code style), it will be merged!
 
 
-### 命名规则
-我们的代码的命名规则如下：
+---
+## Code style
+There are some basic rules that need to be followed when writing code for VeighNa, otherwise your code may not be merged.
+These rules include:
+- [Contribute code](# Contribute code)
+  - [create pr](#create pr)
+  - [Code style](#code style)
+    - [Naming Rules](#Naming Rules)
+    - [Code Format](#Code Format)
+    - [Code quality check](#Code quality check)
 
-* 类属性、类方法、参数和变量使用小写加下划线的形式
-* 类名使用驼峰式命名
-* 常量使用大写加下划线的形式
 
-例如：
+### Naming rules
+The naming rules for our code are as follows:
+
+* Class properties, class methods, parameters and variables use lowercase with underscores
+* Class names use camel case
+* Constants use uppercase plus underscore form
+
+Example:
 ```python 3
 DEFAULT_PATH = "/tmp/VeighNa/"
-class ClassA:
+class ClassA.
     def __init__(self, arg_one: int, arg_two: str):
-        if arg_two is None:
+        if arg_two is None.
             arg_two = DEFAULT_PATH
         self.property_one = arg_one
         variable_one = "some string"
 ```
 
 
-### 代码格式
-我们对代码格式没有特别严格的要求，但是至少要符合pep8标准，并且额外要在类和函数下面带上docstring(就是一段"""""")。
+### Code formatting
+We don't have particularly strict requirements for code formatting, but at least it should be pep8 compliant, and additionally take a docstring (that's a paragraph of """""") underneath classes and functions.
 
-要让代码符合pep8标准，写完代码之后使用[autopep8](https://github.com/hhatto/autopep8)格式化你的代码就可以了:  
+To make the code pep8 compliant, format your code with [autopep8](https://github.com/hhatto/autopep8) after writing it:
+
 ```bash
 autopep8 --in-place --recursive . 
 ```
 
-### 代码质量检查
-使用[flake8](https://pypi.org/project/flake8/)检查你的代码，确保没有error和warning。
-在项目根目录下运行```flake8```就可以检查出代码中书写不严谨的地方了。如果检查出error或者warning，说明你的代码需要进行一些修改以提升质量。
+### Code quality checking
+Check your code with [flake8](https://pypi.org/project/flake8/) to make sure there are no errors and warnings.
+Running ```flake8`` in the project root directory will check for poorly written code. If it checks for errors or warnings, it means that your code needs some changes to improve the quality.
 
 [GithubVnpy]:https://github.com/vnpy/vnpy
 [GithubDocForSync]:https://help.github.com/articles/syncing-a-fork/

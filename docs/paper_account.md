@@ -1,112 +1,112 @@
-# PaperAccount - 本地仿真交易模块
+# PaperAccount - Local Simulation Trading Module
 
 
-## 功能简介
+## Introduction
 
-PaperAccount是用于**本地仿真交易**的功能模块，用户可以通过其UI界面基于实盘行情进行本地化的模拟交易。
+PaperAccount is a functional module for **localized simulation trading**, which allows users to perform localized simulation trading based on real market quotes through its UI interface.
 
-## 加载启动
+## Load and start
 
-### VeighNa Station加载
+### Loading VeighNa Station
 
-启动登录VeighNa Station后，点击【交易】按钮，在配置对话框中的【应用模块】栏勾选【PaperAccount】。
+After logging in to VeighNa Station, click the [Trading] button and check [PaperAccount] in the [Application Module] column of the configuration dialog box.
 
-### 脚本加载
+### Script Loading
 
-在启动脚本中添加如下代码：
+Add the following code to the startup script:
 
 ```python 3
-# 写在顶部
+### Write it at the top
 from vnpy_paperaccount import PaperAccountApp
 
-# 写在创建main_engine对象后
+# Write after creating the main_engine object
 main_engine.add_app(PaperAccountApp)
 ```
 
 
-## 启动模块
+## Start the module
 
-在启动模块之前，请先连接要进行模拟交易的接口（连接方法详见基本使用篇的连接接口部分）。看到VeighNa Trader主界面【日志】栏输出“合约信息查询成功”之后再启动模块，如下图所示：
+Before launching the module, please connect the interface where you want to make a demo trade (see the Connecting Interface section of the Basic Usage chapter for details on how to do this). Start the module after you see "Contract Information Query Successful" in the [Log] column of the main interface of VeighNa Trader, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_strategy/1.png)
 
-请注意，IB接口因为登录时无法自动获取所有的合约信息，只有在用户手动订阅行情时才能获取。因此需要在主界面上先行手动订阅合约行情，再启动模块。
+Please note that the IB interface does not automatically get all contract information when logging in, but only when the user manually subscribes to the quotes. Therefore, you need to subscribe to the contract quotes manually on the main interface before launching the module.
 
-交易接口连接后，本地模拟交易模块自动启动。此时所有合约的交易委托和撤单请求均**被本地模拟交易模块接管**，不会再发往实盘服务器。
+Once the trading interface is connected, the local demo trading module starts automatically. At this time, all contract orders and withdrawal requests are **taken over by the local simulation trading module** and will not be sent to the live server.
 
 
-## 功能配置
+## Function Configuration
 
-在菜单栏中点击【功能】-> 【模拟交易】，或者点击左侧按钮栏的图标：
+Click [Function] -> [Demo Trading] in the menu bar, or click the icon in the left button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/paper_account/4.png)
 
-即可进入本地模拟交易模块的UI界面，如下图所示：
+You can enter the UI interface of the local demo trading module, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/paper_account/5.png)
 
-用户可以通过UI界面对以下功能进行配置：
+Users can configure the following functions through the UI interface:
 
-- 市价委托和停止委托的成交滑点
-  - 用于影响市价单和停止单成交时，成交价格相对于盘口价格的**滑点跳数**；
+- Slippage for Market and Stop orders.
+  - Used to influence the **slip jump** of the transaction price relative to the intraday price when the market order and stop order are transacted;
 
-- 模拟交易持仓盈亏的计算频率
-  - 多少秒执行一次持仓盈亏计算更新，如果持仓较多时发现程序卡顿，建议尝试调低频率；
+- Calculation Frequency of Position P&L for Demo Trading
+  - How many seconds to perform a position P&L calculation update, if more positions found program lag, it is recommended to try to reduce the frequency;
 
-- 下单后立即使用当前盘口撮合
-  - 默认情况下，用户发出的委托需要**等到下一个TICK盘口推送才会撮合**（模拟实盘情景），对于TICK推送频率较低的不活跃合约可以勾选该选项，委托后会**立即基于当前的最新TICK盘口撮合**；
+- Immediately after the order is placed to use the current market summarization
+  - By default, the commission issued by the user needs to ** wait until the next TICK market push will be summarized ** (simulation of real-time scenarios), for the TICK push frequency of inactive contracts can be checked this option, the commission will be ** immediately based on the current summary of the latest TICK market **;
 
-- 清空所有持仓
-  - 一键清空本地所有持仓数据。
+- Empty All Positions
+  - A key to clear all local position data.
 
-本地模拟交易模块同样可以和其他策略应用模块（如CtaStrategy模块、SpreadTrading模块等）一起使用，从而实现本地化的量化策略仿真交易测试。
+The Local Simulation Trading module can also be used together with other strategy application modules (e.g. CtaStrategy module, SpreadTrading module, etc.) to enable localized quantitative strategy simulation trading tests.
 
 
-## 数据监控
+## Data Monitoring
 
-用户可以通过【查询合约】来查询确认合约的交易接口状态：
+Users can query the trading interface status of confirmed contracts through [Query Contracts]:
 
-点击菜单栏的【帮助】->【合约查询】，在弹出的对话框中直接点击右上角的【查询】按钮，发现所有合约的【交易接口】列均显示为PAPER，如下图所示：
+Click [Help] -> [Contract Query] in the menu bar, and in the pop-up dialog box, directly click the [Query] button in the upper right corner, and find that the [Trading Interface] column of all contracts are displayed as PAPER, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/paper_account/2.png)
 
-在对某一合约进行下单和撤单操作前，用户必须先**订阅**该合约的行情。
+Before placing and withdrawing an order on a contract, the user must first **SUBSCRIBE** the quotes of that contract.
 
-下图中【委托】、【成交】、【持仓】三个监控组件中显示的信息，其接口列均为PAPER（本地模拟数据)：
+The interface columns of the information displayed in the three monitoring components [Commission], [Transaction] and [Position] in the following chart are all PAPER (local simulation data):
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/paper_account/3.png)
 
-请注意，本地模拟交易模块**没有提供资金计算功能**，所以【资金】组件显示的是实盘账号的资金，并不会因为在本地模拟交易模块产生的委托而改变。
+Please note that the local demo trading module **does not provide the funds calculation function**, so the [Funds] component displays the funds of the live account, which will not be changed by the commissions generated in the local demo trading module.
 
 
-## 业务逻辑
+## Business Logic
 
-本地模拟交易模块的业务逻辑如下所示：
+The business logic of the local demo trading module is shown below:
 
-- 支持的委托类型（不支持的类型会被拒单）：
+- Supported commission types (unsupported types will be rejected):
 
-  - 限价单；
-  - 市价单；
-  - 停止单；
+  - Limit orders;
+  - Market orders;
+  - Stop orders;
 
-- 委托撮合规则采用**到价成交**模式，以买入委托为例：
+- Entrusted to summarize the rules using ** to the price of the transaction ** mode, to buy entrusted as an example:
 
-  - 限价单：当盘口卖1价ask_price_1小于等于委托价格，则成交；
-  - 停止单：当盘口卖1价ask_price_1大于等于委托价格，则成交；
+  - Limit order: when the market price ask_price_1 is less than or equal to the commission price, the transaction;
+  - Stop order: when the plate selling 1 price ask_price_1 is greater than or equal to the commission price, then the transaction;
 
-- 委托成交时**不考虑盘口挂单量**，一次性全部成交；
+- Delegation transaction **does not take into account the amount of pending orders on the disk**, a one-time full transaction;
 
-- 委托成交后，先推送委托状态更新OrderData，再推送成交信息TradeData，**和实盘交易中的顺序一致**；
+- After the commission is closed, the commission status update OrderData is pushed first, and then the transaction information TradeData is pushed, **and the order in real trading is consistent**;
 
-- 委托成交后，模块会自动记录相应的持仓信息PositionData：
+- After the commission is closed, the module will automatically record the corresponding position information PositionData:
 
-  - 根据合约本身的持仓模式（多空仓 vs 净仓位）信息，维护对应的持仓信息；
-  - **开仓成交时，采用加权平均计算更新持仓成本价；**
-  - **平仓成交时，持仓成本价不变；**
-  - 多空仓模式下，挂出平仓委托后会冻结相应的持仓数量，可用数量不足时会拒单；
-  - 持仓的盈亏会基于持仓成本价和最新成交价定时计算（默认频率1秒）；
+  - According to the position mode (long/short vs. net position) information of the contract itself, the corresponding position information is maintained;
+  - **When a position is opened and closed, the cost price of the position is updated using a weighted average calculation;**
+  - When closing a transaction, the cost price of the position remains unchanged
+  - Under the long/short position mode, the corresponding position quantity will be frozen after the closing order is placed, and the order will be rejected when the available quantity is insufficient;
+  - The profit and loss of the position will be calculated based on the cost price of the position and the latest transaction price at regular intervals (default frequency 1 second);
 
-- 数据的持久化保存：
+- Data persistence:
 
-  - 成交数据和委托数据不保存，关闭VeighNa Trader后即消失；
-  - 持仓数据会在有变化时**立即写入硬盘文件**，重启VeighNa Trader登录交易接口后即可看到（要收到相应的合约信息）。
+  - The transaction data and commission data are not saved and will disappear when VeighNa Trader is closed;
+  - Position data will be written to the hard disk file **immediately when there is a change** and can be seen after restarting VeighNa Trader and logging into the trading interface (to receive the corresponding contract information).
