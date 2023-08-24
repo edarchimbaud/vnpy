@@ -50,8 +50,8 @@ You need to fill in the four fields of code, exchange, period and start date inf
 - Exchange
   - Exchange on which the contract is traded (click the arrow button on the right side of the window to select the list of exchanges supported by VeighNa)
 - PERIOD
-  - MINUTE (1 minute K-line)
-  - HOUR (1 hour K-line)
+  - MINUTE (1 minute bar)
+  - HOUR (1 hour bar)
   - DAILY
   - WEEKLY
   - TICK（一个Tick）

@@ -98,7 +98,7 @@
 2. remove the EVENT_TIMER timer event push in vnpy_rpcservice.
 3. adjust vnpy_postgresql to write data in batch to improve efficiency.
 4. add sub-thread exception catching in VeighNa Trader (requires Python>=3.8)
-5. adjust vnpy_ib interface to query historical K-line data, for foreign exchange and precious metals are used in the median price (rather than the transaction price)
+5. adjust vnpy_ib interface to query historical bar data, for foreign exchange and precious metals are used in the median price (rather than the transaction price)
 6. add vnpy_ctastrategy for backtesting in the process of funds burst (less than or equal to 0) check the situation
 7. optimize the encryption authentication of vnpy_webtrader module, and support web process shutdown and restart.
 
@@ -145,7 +145,7 @@
 
 ## Fixes
 
-1. fix the problem of counting the amount of K-line data in vnpy_mongodb (using the new count_documents function)
+1. fix the problem of counting the amount of bar data in vnpy_mongodb (using the new count_documents function)
 2. fix the issue that BaseMonitor derived component could not save interface state automatically due to PySide6 object destruction before __del__ call
 
 
@@ -268,7 +268,7 @@
 4. Remove MarketRadarApp. 5.
 5. Removed Arbitrage and Grid non-executable algorithms from Algorithmic Trading Module
 6. vnpy_tushare data service, add position and turnover fields
-8. vnpy_datamanager data manager, query K-line information is displayed sorted by contract code
+8. vnpy_datamanager data manager, query bar information is displayed sorted by contract code
 13. vnpy_dolphindb optimize data loading and parsing speed
 14. vnpy_influxdb uses pandas to parse CSV data to improve the overall speed.
 
@@ -319,7 +319,7 @@
 ## Strip
 1) Strip the rice basket data interface to vnpy_rqdata project and upgrade it to version 2.9.38. 2) Strip the quote recording module to vnpy_rqdata project.
 2. Strip the quote recording module to vnpy_datarecorder project.
-3. stripped the K-line charting module to vnpy_chartwizard project.
+3. stripped the bar charting module to vnpy_chartwizard project.
 4. stripped SQLite database interface to vnpy_sqlite project
 5. stripped MySQL database interface to vnpy_mysql project
 6. stripped PostgreSQL database interface to vnpy_postgresql project
@@ -335,7 +335,7 @@
 3. added turnover turnover field for BarData and TickData
 
 ## Adjustments
-1. change the loading of K-line spread data during strategy initialization in SpreadTrading module to give priority to querying data through RQData.
+1. change the loading of bar spread data during strategy initialization in SpreadTrading module to give priority to querying data through RQData.
 2. In the AboutDialog of MainWindow, get the version information based on importlib_metadata module.
 3. hide the [?] button in the upper right corner of all dialog boxes. button
 4. Change the contract information of Easun FX TapGateway from quotes interface to trading interface (to avoid the problem that the size of FX contract is 0).
@@ -377,7 +377,7 @@
 10. stripped data management module to vnpy_datamanager project
 
 ## Fixes
-2. fix the error when deleting K-line data in MySQL and PostgreSQL database managers
+2. fix the error when deleting bar data in MySQL and PostgreSQL database managers
 3. fix RestClient and WebsocketClient based on aiohttp that fails to restart after the event loop is stopped
 7. fix the problem that CtaBacktester fails to start optimization when optimizing parameters based on tick level data
 8. fix the problem that ToraStockGateway and ToraOptionGateway do not return the delegate number when calling the order function.
@@ -392,13 +392,13 @@
 10. fix the problem of query failure due to wrong parameter passing when querying historical data in IbGateway. 11. fix the problem of query failure when querying historical data in IbGateway.
 11. fix the problem of IbGateway getting stuck when the historical data of the contract to be queried does not exist.
 12. Fix an issue in IbGateway where the contract multiplier (string) returned by a query is not converted to a higher level application.
-14. fix the issue of BarGenerator, when synthesizing hourly K-line, the closing price of minute K-line was missed in some cases.
+14. fix the issue of BarGenerator, when synthesizing hourly bar, the closing price of minute bar was missed in some cases.
 15. Fix a bug in UftGateway that prevented the subscription of quotes when connecting to the ETF options server.
 16. Fix an issue with UftGateway that incorrectly handles milliseconds in the commission timestamp when connecting to the ETF Options Server.
 
 ## Adjustments
 1. modify the net position trading mode of the CTA module to support the splitting of today's and yesterday's positions of SFE and NEMO. 2. adjust the return mode of the Portfolio Strategy module.
-2. adjust the K-line playback logic of the backtesting engine of the portfolio strategy module, so that when K-line data is missing at a certain point in time, the K-line dictionary pushed to the strategy will not make up for it.
+2. adjust the bar playback logic of the backtesting engine of the portfolio strategy module, so that when bar data is missing at a certain point in time, the bar dictionary pushed to the strategy will not make up for it.
 3. encapsulate the CTP interface and API and divest it into the vnpy_ctp project.
 4. Packaged the CTP passthrough test interface and API into the vnpy_ctptest project.
 
@@ -410,17 +410,17 @@
 # Version 2.2.0
 
 ## Fixes
-1. Fixed the problem that DataManager queried the range of K-line data in the database with opposite start and end dates. 2.
+1. Fixed the problem that DataManager queried the range of bar data in the database with opposite start and end dates. 2.
 6. fix the problem that save_tick_data function in PostgreSQL database docking layer has saved error due to accessing interval.
 7. Fix a bug in DataRecorder module where the contract for saving recording is misconfigured under add_bar_recording.
 8. fix a problem in the PostgreSQL database docking layer where the transaction execution fails and subsequent errors are reported, by setting the autorollback mode (autorollback=True) when creating the database object.
 9. fix the error of querying data range due to calling old version of function when DataManager updates data automatically.
 10. fix the problem of floating point precision of historical data obtained by RQData download. 11. fix the bug of BarGenerator.
-11. fix the problem of missing fields of closing price, volume and position when BarGenerator synthesizes N-hour K-line.
-12. fix the problem of repeating the display of time points on the axes of ChartWidget, the underlying component of K-line charts, when fewer data are drawn.
+11. fix the problem of missing fields of closing price, volume and position when BarGenerator synthesizes N-hour bar.
+12. fix the problem of repeating the display of time points on the axes of ChartWidget, the underlying component of bar charts, when fewer data are drawn.
 13. fix the problem of missing time zone information in the Spread Market data generated by the SpreadTrading module.
 14. fix the problem of missing the latest price and time stamp of the spot precious metal market data in IbGateway.
-15. fix the problem of missing volume field when synthesizing hourly K-line in BarGenerator
+15. fix the problem of missing volume field when synthesizing hourly bar in BarGenerator
 16. fix the problem that vnpy.rpc module cannot exit normally after enabling asymmetric encryption.
 
 ## Adjustments
@@ -452,7 +452,7 @@
 ## Version 2.1.9
 
 ## Fixes
-1. Fixed the problem that the same hourly K-line was pushed twice in BarGenerator's hourly line synthesis. 2.
+1. Fixed the problem that the same hourly bar was pushed twice in BarGenerator's hourly line synthesis. 2.
 2. fix the problem that the lru_cache cache causes the result of the new round of optimization to remain unchanged when the genetic algorithm is optimized.
 3. fix the problem of WinError 10054 WSAECONNRESET caused by the use of OpenSSL in the lower layer of the requests library when RestClient initiates a request.
 5. fix the problem that the exception catching dialog box executes repeatedly and causes a crash when the program catches exceptions frequently
@@ -465,7 +465,7 @@
 2. When BaseMonitor saves a CSV file, the table header is changed to the Chinese language displayed in the graphical interface (before it was the English language for the field names of the data).
 3. When initializing the TWAP algorithm, the number of commissions in each round is rounded to the minimum number of contracts to be traded.
 4. split the database client in the original vnpy.trader.database into a separate vnpy.database module.
-5. Optimize the code refactoring of SQLite/MySQL/PostgreSQL/MongoDB/InfluxDB clients, and add the function of BarOverview query for the overall situation of K-line data.
+5. Optimize the code refactoring of SQLite/MySQL/PostgreSQL/MongoDB/InfluxDB clients, and add the function of BarOverview query for the overall situation of bar data.
 
 ## New
 1. added BaseMonitor data monitoring UI component (and its subclasses), with the function of automatically saving column widths

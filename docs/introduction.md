@@ -98,7 +98,7 @@ From professional individual investors, entrepreneurial private equity, to broke
 
 * script_trader: script strategy module, designed for multi-subjective portfolio trading strategy design, but also can be realized directly on the command line in the form of REPL instruction trading, does not support the backtesting function
 
-* chart_wizard: real-time K-line chart module, you can realize simple real-time K-line market display, directly in the local contract code edit box, enter vt_symbol, click on the [New Chart] button will open the corresponding contract's chart.
+* chart_wizard: real-time bar chart module, you can realize simple real-time bar market display, directly in the local contract code edit box, enter vt_symbol, click on the [New Chart] button will open the corresponding contract's chart.
 
 * rpc_service: RPC service module, allowing a VeighNa Trader process to be started as a server, as a unified quote and trade routing channel, allowing multiple clients to connect simultaneously, to achieve multi-process distributed system.
 
@@ -106,7 +106,7 @@ From professional individual investors, entrepreneurial private equity, to broke
 
 * data_manager: Historical data management module, is a multi-functional management tool for historical data within VeighNa Trader. Can support data import, data view and data export and other functions, support for customizing the data table header format.
 
-* data_recorder: Quotes recording module, based on the graphical interface for configuration, according to the needs of real-time recording Tick or K-line quotes into the database, for strategy backtesting or initialization of the real market.
+* data_recorder: Quotes recording module, based on the graphical interface for configuration, according to the needs of real-time recording Tick or bar quotes into the database, for strategy backtesting or initialization of the real market.
 
 * risk_manager: risk management module, providing statistics and restrictions on trading flow control, number of orders placed, active commissions, total number of withdrawn orders and other rules, effectively realizing the front-end risk control function.
 
@@ -121,7 +121,7 @@ From professional individual investors, entrepreneurial private equity, to broke
 
 **vnpy.event**, a simple and easy-to-use event-driven engine that serves as the core of an event-driven trading program.
 
-**vnpy.chart**, Python high-performance K-line charts, support for large-data-volume chart display and real-time data update function.
+**vnpy.chart**, Python high-performance bar charts, support for large-data-volume chart display and real-time data update function.
 
 **vnpy.trader.database**, integrates several database management side modules to support database read/write performance and future new database extensions.
 

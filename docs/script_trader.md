@@ -306,7 +306,7 @@ Among them:
 
 - vt_symbol: local contract code in the format of contract code + exchange name;
 - start_date: start date, in the format of "%Y%%m%d";
-- interval: K-line period, including: minutes, hours, days, weeks;
+- interval: bar period, including: minutes, hours, days, weeks;
 - bars: a list object containing a series of BarData data with the following BarData definition:
 
 ```python 3

@@ -1,8 +1,8 @@
-# ChartWizard - Real-time K-Line Charting Module
+# ChartWizard - Real-time Bar Charting Module
 
 ## Introduction
 
-ChartWizard is a functional module for **real-time K-line chart display**, users can view real-time and historical K-line quotes through its UI, currently only supports displaying 1-minute level K-line data, real-time K-line (the latest K-line) for Tick level refresh.
+ChartWizard is a functional module for **real-time bar chart display**, users can view real-time and historical bar quotes through its UI, currently only supports displaying 1-minute level bar data, real-time bar (the latest bar) for Tick level refresh.
 
 ## Loading Startup
 
@@ -31,13 +31,13 @@ Before starting the module, please connect to the trading interface (see the Con
 
 Please note that the IB interface does not get all contract information automatically when you log in, but only when you subscribe to the market manually. Therefore, you need to subscribe to the contract quotes manually on the main interface before launching the module.
 
-Since VeighNa itself does not provide any data service, for the historical data used in the process of K-line charting, the domestic futures historical data is provided by the data service, users need to prepare and configure the data service account (for details of the configuration method, please refer to the Global Configuration section of the Basic Usage chapter).
+Since VeighNa itself does not provide any data service, for the historical data used in the process of bar charting, the domestic futures historical data is provided by the data service, users need to prepare and configure the data service account (for details of the configuration method, please refer to the Global Configuration section of the Basic Usage chapter).
 
-After successfully connecting to the trading interface, click [Function] -> [K-Line Chart] in the menu bar, or click the icon on the left side button bar:
+After successfully connecting to the trading interface, click [Function] -> [Bar Chart] in the menu bar, or click the icon on the left side button bar:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/1.png)
 
-You can enter the UI interface of the real-time K-line chart module, as shown in the following figure:
+You can enter the UI interface of the real-time bar chart module, as shown in the following figure:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/2.png)
 
@@ -46,11 +46,11 @@ You can enter the UI interface of the real-time K-line chart module, as shown in
 
 After opening the chart window, enter the contract code in the [Local Code] edit box (note that the local code consists of two parts: the code prefix and the exchange suffix, such as rb2112.SHFE).
 
-Click the [New Chart] button to create a K-line chart of the corresponding contract, as shown below:
+Click the [New Chart] button to create a bar chart of the corresponding contract, as shown below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/3.png)
 
-Users can create new K-line charts for multiple contracts, with a toggle window for quick switching: 
+Users can create new bar charts for multiple contracts, with a toggle window for quick switching: 
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/chart_wizard/4.png)
 
@@ -59,12 +59,12 @@ Users can create new K-line charts for multiple contracts, with a toggle window 
 
 The chart for each contract is divided into two sub-charts areas, upper and lower:
 
-- The upper sub-chart is the ticker K-line;
+- The upper sub-chart is the ticker bar;
 - The lower sub-chart shows volume data.
 
-The crosshair on the chart can be used to locate and display specific data for a particular point in time, with labels corresponding to the data points on both the X and Y axes, and information such as the OHLCV of the K-line is also displayed in the upper left corner.
+The crosshair on the chart can be used to locate and display specific data for a particular point in time, with labels corresponding to the data points on both the X and Y axes, and information such as the OHLCV of the bar is also displayed in the upper left corner.
 
 Other quick operations:
 
-- You can pan the time range of the K-line chart display left and right by dragging and dropping with the left mouse button;
-- You can zoom in and out the time range of the K-line chart by scrolling with the mouse wheel.
+- You can pan the time range of the bar chart display left and right by dragging and dropping with the left mouse button;
+- You can zoom in and out the time range of the bar chart by scrolling with the mouse wheel.

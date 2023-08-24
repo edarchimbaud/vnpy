@@ -261,7 +261,7 @@ from vnpy_portfoliostrategy import StrategyTemplate, StrategyEngine
 from vnpy_portfoliostrategy.utility import PortfolioBarGenerator
 ```
 
-where StrategyTemplate is the strategy template, StrategyEngine is the strategy engine, Interval is the data frequency, TickData and BarData are the data containers that store the corresponding information, PortfolioBarGenerator is the K-line generation module for the portfolio strategy. PortfolioBarGenerator is the portfolio strategy K-line generation module, and ArrayManager is the K-line time series management module.
+where StrategyTemplate is the strategy template, StrategyEngine is the strategy engine, Interval is the data frequency, TickData and BarData are the data containers that store the corresponding information, PortfolioBarGenerator is the bar generation module for the portfolio strategy. PortfolioBarGenerator is the portfolio strategy bar generation module, and ArrayManager is the bar time series management module.
 
 ### Strategy Parameters and Variables
 
@@ -345,7 +345,7 @@ In this inherited Strategy class, initialization is generally done in four steps
 
 The default length of the ArrayManager is 100, if you need to adjust the length of the ArrayManager, you can pass in the size parameter to adjust it (size cannot be smaller than the cycle length of the calculated indicator).
 
-4. Call the PortfolioBarGenerator module: synthesize Tick data into 1-minute K-line data by time slicing. If required, longer time period data can also be synthesized, e.g. 15-minute K-line.
+4. Call the PortfolioBarGenerator module: synthesize Tick data into 1-minute bar data by time slicing. If required, longer time period data can also be synthesized, e.g. 15-minute bar.
 
 If you only trade based on on_bar, the code here can be written as:
 
@@ -359,9 +359,9 @@ Please note:
 
  - When synthesizing X-minute lines, X must be set to a number divisible by 60 (except for 60). There is no such restriction for hourly line synthesis.
 
- - PortfolioBarGenerator's default data frequency for synthesizing long period K-liners based on the on_bar function is at the minute level, if you need to trade based on synthesized hourly or longer period K-liners, please import Interval at the top of the strategy file and pass in the corresponding data frequency to the bg instance.
+ - PortfolioBarGenerator's default data frequency for synthesizing long period barrs based on the on_bar function is at the minute level, if you need to trade based on synthesized hourly or longer period barrs, please import Interval at the top of the strategy file and pass in the corresponding data frequency to the bg instance.
 
- - **self.on_hour_bars function name is used inside the program**, if you need to synthesize 1 hour K-line, please use self.on_1_hour_bars or other naming.
+ - **self.on_hour_bars function name is used inside the program**, if you need to synthesize 1 hour bar, please use self.on_1_hour_bars or other naming.
 
 ### Functions called by the strategy engine
 
@@ -390,7 +390,7 @@ The on_init function is called when initializing a strategy. The default method 
         self.load_bars(10)
 ```
 
-Unlike CTA strategies, multi-contract portfolio strategies only support K-line backtesting, so multi-contract strategy templates do not have a load_ticks function.
+Unlike CTA strategies, multi-contract portfolio strategies only support bar backtesting, so multi-contract strategy templates do not have a load_ticks function.
 
 When the strategy is initialized, the inited and trading status of the strategy are both [False], at this time, it just calls ArrayManager to calculate and cache the relevant calculation indicators, and cannot issue trading signals. After calling the on_init function, the inited state of the strategy is changed to [True], the strategy initialization is completed.
 
@@ -438,9 +438,9 @@ After calling the strategy's on_stop function to stop the strategy, the strategy
 
 * Output parameter: none
 
-The vast majority of trading systems only provide Tick data push. Even if some platforms can provide K-line data push, the speed of these data arriving at the local computer will be slower than that of Tick data push, because it also needs to be synthesized by the platform before it can be pushed over. So in live trading, all the strategies in VeighNa have their K-lines synthesized from the Tick data received.
+The vast majority of trading systems only provide Tick data push. Even if some platforms can provide bar data push, the speed of these data arriving at the local computer will be slower than that of Tick data push, because it also needs to be synthesized by the platform before it can be pushed over. So in live trading, all the strategies in VeighNa have their bars synthesized from the Tick data received.
 
-The on_tick function is called when the strategy receives the latest tick data from the live market. The default way to write this is to push the received tick data into the pbg instance created earlier in order to synthesize the 1-minute K-line through the PortfolioBarGenerator's update_tick function, as shown in the code below:
+The on_tick function is called when the strategy receives the latest tick data from the live market. The default way to write this is to push the received tick data into the pbg instance created earlier in order to synthesize the 1-minute bar through the PortfolioBarGenerator's update_tick function, as shown in the code below:
 
 ```python 3
     def on_tick(self, tick: TickData).
@@ -458,15 +458,15 @@ Note that the on_tick function will only be called in live trading, backtesting 
 
 * out parameter: none
 
-The on_bars function is called when the strategy receives the latest K-line data (the default push is a one-minute K-line based on Tick Synthesis for live trading, and for backtesting it depends on the frequency of the K-line data filled in when selecting the parameters).
+The on_bars function is called when the strategy receives the latest bar data (the default push is a one-minute bar based on Tick Synthesis for live trading, and for backtesting it depends on the frequency of the bar data filled in when selecting the parameters).
 
-Unlike the CTA strategy module, the Multi-Contract Portfolio strategy module receives the K-line pushes through the on_bars callback function to receive the K-line data of all the contracts at that point in time at once, rather than through the on_bar function to receive them one by one (there is no way to determine whether the K-line at the current point in time has all gone through).
+Unlike the CTA strategy module, the Multi-Contract Portfolio strategy module receives the bar pushes through the on_bars callback function to receive the bar data of all the contracts at that point in time at once, rather than through the on_bar function to receive them one by one (there is no way to determine whether the bar at the current point in time has all gone through).
 
 There are two ways of writing this that have appeared in the example strategy:
 
-1. If the strategy is based on on_bars advances to the K-line transaction, then please write the transaction request class function under the on_bars function (because this example strategy class PortfolioBollChannelStrategy is not based on the on_bars transaction, so not an example of the explanation. Sample code based on on_bars trading can refer to other sample strategy);
+1. If the strategy is based on on_bars advances to the bar transaction, then please write the transaction request class function under the on_bars function (because this example strategy class PortfolioBollChannelStrategy is not based on the on_bars transaction, so not an example of the explanation. Sample code based on on_bars trading can refer to other sample strategy);
 
-2. If the strategy needs to be based on on_bars advances to the K-line data through the PortfolioBarGenerator synthesized longer period of the K-line to trade, then please on_bars in the call PortfolioBarGenerator update_bars function, the received bars into the previously created pbg instance, as shown in the code below:
+2. If the strategy needs to be based on on_bars advances to the bar data through the PortfolioBarGenerator synthesized longer period of the bar to trade, then please on_bars in the call PortfolioBarGenerator update_bars function, the received bars into the previously created pbg instance, as shown in the code below:
 
 ```python 3
     def on_bars(self, bars: Dict[str, BarData]):
@@ -476,7 +476,7 @@ There are two ways of writing this that have appeared in the example strategy:
         self.pbg.update_bars(bars)
 ```
 
-The sample strategy class PortfolioBollChannelStrategy is used to generate signals from 2-hour K-line data returns. There are three parts in total, as shown in the code below:
+The sample strategy class PortfolioBollChannelStrategy is used to generate signals from 2-hour bar data returns. There are three parts in total, as shown in the code below:
 
 ```python 3
     def on_2hour_bars(self, bars: Dict[str, BarData]):
@@ -554,7 +554,7 @@ The sample strategy class PortfolioBollChannelStrategy is used to generate signa
 
 - Empty unfilled commissions: In order to prevent the previously placed orders from being unfilled in the last 2 hours, but the price may have been adjusted in the next 2 hours, the cancel_all() method is used to immediately revoke all previously unfilled commissions, ensuring that the entire state of the strategy at the beginning of this current 2 hours is clear and unique;
 
-- Call the K-line time series management module: based on the latest 2-hour K-line data to calculate the corresponding technical indicators, such as the upper and lower Bollinger Bands, CCI indicators, ATR indicators and so on. First get the ArrayManager object, and then push the received K-line in, check the initialization status of the ArrayManager, if it has not yet been initialized successfully directly return, there is no need to go to the subsequent transaction-related logic judgment. Because many technical indicators require a minimum number of K-lines, if the number is not enough, the calculated indicator will be wrong or meaningless. On the contrary, if there is no return, you can start calculating technical indicators;
+- Call the bar time series management module: based on the latest 2-hour bar data to calculate the corresponding technical indicators, such as the upper and lower Bollinger Bands, CCI indicators, ATR indicators and so on. First get the ArrayManager object, and then push the received bar in, check the initialization status of the ArrayManager, if it has not yet been initialized successfully directly return, there is no need to go to the subsequent transaction-related logic judgment. Because many technical indicators require a minimum number of bars, if the number is not enough, the calculated indicator will be wrong or meaningless. On the contrary, if there is no return, you can start calculating technical indicators;
 
 - Signal Calculation: Through the judgment of the position as well as the combination of CCI indicators, ATR indicators in the channel breakout point hung ** limit order commission ** (buy/sell), while setting the exit point (short/cover).
 
@@ -565,7 +565,7 @@ The sample strategy class PortfolioBollChannelStrategy is used to generate signa
 
 #### Delegation Status Update
 
-Because of the need to trade multiple contracts at the same time in the portfolio strategy, it is not possible to determine the order of each contract's commission transaction within a certain K-line during backtesting, so it is not possible to provide the on_order and on_trade functions to get the commission transaction push, but only through the get_pos and get_order to perform the relevant status query each time the on_bars callback. query.
+Because of the need to trade multiple contracts at the same time in the portfolio strategy, it is not possible to determine the order of each contract's commission transaction within a certain bar during backtesting, so it is not possible to provide the on_order and on_trade functions to get the commission transaction push, but only through the get_pos and get_order to perform the relevant status query each time the on_bars callback. query.
 
 ### Active functions
 
@@ -681,9 +681,9 @@ Call the write_log function in a strategy to perform a log output of the specifi
 
 * Outgoing parameters: none
 
-Calling the load_bars function in a strategy allows you to load K-line data when the strategy is initialized.
+Calling the load_bars function in a strategy allows you to load bar data when the strategy is initialized.
 
-As shown in the code below, when the load_bars function is called, the default number of days to load is 10 and the frequency is one minute, which corresponds to loading 10 days of 1-minute K-line data. In backtesting, 10 days refers to 10 trading days, while in the real market, 10 days refers to natural days, so it is recommended to load the number of days rather than too few. Loading will first try to get historical data through the trading interface, data service, and database in turn until it gets historical data or returns null.
+As shown in the code below, when the load_bars function is called, the default number of days to load is 10 and the frequency is one minute, which corresponds to loading 10 days of 1-minute bar data. In backtesting, 10 days refers to 10 trading days, while in the real market, 10 days refers to natural days, so it is recommended to load the number of days rather than too few. Loading will first try to get historical data through the trading interface, data service, and database in turn until it gets historical data or returns null.
 
 ```python 3
     def load_bars(self, days: int, interval: Interval = Interval.MINUTE) -> None.
@@ -761,7 +761,7 @@ Please note that the state of the strategy's target position is automatically pe
 
 Calling the rebalance_portfolio function from within a strategy allows you to execute a position reversal trade based on a set target position for a specific contract.
 
-Please note: Only contracts that have a K-slice in the current bars dictionary will participate in the execution of this position adjustment trade, thus ensuring that contracts in non-trading sessions (no market push) will not be incorrectly issued commissions.
+Please note: Only contracts that have a bar in the current bars dictionary will participate in the execution of this position adjustment trade, thus ensuring that contracts in non-trading sessions (no market push) will not be incorrectly issued commissions.
 
 **calculate_price**
 
@@ -783,14 +783,14 @@ The biggest difference between the Position Target Adjustment Trading function a
 
 * out parameter: none
 
-The on_bars function is called when the strategy receives the latest K-line data (the default advance is a one-minute K-line based on Tick Synthesis for live trades, and for backtests it depends on the frequency of the K-line data that was filled in when the parameter was selected).
+The on_bars function is called when the strategy receives the latest bar data (the default advance is a one-minute bar based on Tick Synthesis for live trades, and for backtests it depends on the frequency of the bar data that was filled in when the parameter was selected).
 
-The example strategy class TrendFollowingStrategy is used to generate signals from one-minute K-line data returns. There are three parts, as shown in the code below:
+The example strategy class TrendFollowingStrategy is used to generate signals from one-minute bar data returns. There are three parts, as shown in the code below:
 
 ```python 3
     def on_bars(self, bars: Dict[str, BarData]) -> None:
-        """K-Line Slice Retracement""""
-        # Update the K-line to calculate the RSI value
+        """Bar Slice Retracement""""
+        # Update the bar to calculate the RSI value
         for vt_symbol, bar in bars.items():
             am: ArrayManager = self.ams[vt_symbol]
             am.update_bar(bar)
@@ -841,7 +841,7 @@ The example strategy class TrendFollowingStrategy is used to generate signals fr
         self.put_event()
 ```
 
-- Call the K-line time series management module: based on the latest minute K-line data to calculate the corresponding technical indicators, such as the ATR indicator, RSI indicator and so on. First get the ArrayManager object, and then push the received K-line in, check the initialization status of the ArrayManager, if it has not been initialized successfully on the direct return, there is no need to go to the subsequent transaction-related logic judgment. Because many technical indicators require a minimum number of K-lines, if the number is not enough, the calculated indicator will be wrong or meaningless. On the contrary, if there is no return, you can start calculating technical indicators;
+- Call the bar time series management module: based on the latest minute bar data to calculate the corresponding technical indicators, such as the ATR indicator, RSI indicator and so on. First get the ArrayManager object, and then push the received bar in, check the initialization status of the ArrayManager, if it has not been initialized successfully on the direct return, there is no need to go to the subsequent transaction-related logic judgment. Because many technical indicators require a minimum number of bars, if the number is not enough, the calculated indicator will be wrong or meaningless. On the contrary, if there is no return, you can start calculating technical indicators;
 
 - Calculation of signals: by determining the position (get_pos) and combining the results of the indicator calculations at the channel breakout point **setting the target position** (set_target)
 

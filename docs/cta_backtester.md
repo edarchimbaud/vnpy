@@ -56,8 +56,8 @@ To download the data, you need to fill in four fields: local code, K-period, sta
 - Local Code
   - Format is Contract Code + Exchange Name
   - For example, IF888.CFFEX, rb2105.SHFE.
-- K-line period:
-  - 1m (1 minute K-line)
+- bar period:
+  - 1m (1 minute bar)
   - 1h（1小时K线）
   - d（日K线）
   - w（周K线）
@@ -215,15 +215,15 @@ The daily profit/loss statistics here are calculated using the Marking-to-Market
 - Total profit and loss: the amount after summarizing the profit and loss of positions and trading profit and loss;
 - Net profit and loss: the total profit and loss after deducting the commission and slippage, but also the final calculation of the daily profit and loss amount used to display the four charts.
 
-### K-Line Charts
+### Bar Charts
 
-Clicking on the "K-Line Charts" button opens a chart that displays the backtested K-Line data, as well as the specific buy and sell point positions of the strategy, as shown in the figure below:
+Clicking on the "Bar Charts" button opens a chart that displays the backtested Bar data, as well as the specific buy and sell point positions of the strategy, as shown in the figure below:
 
 ![](https://vnpy-doc.oss-cn-shanghai.aliyuncs.com/cta_backtester/44.png)
 
 Note that the charting may take some time (usually tens of seconds to a few minutes), so please be patient.
 
-The legend description in the K-line chart can be seen at the bottom of the window, and the overall color scheme and style is standard for the domestic market. The lines between open and closed positions are plotted using the First-in, First-out rule, where each transaction is automatically matched with other transactions according to its volume, so that even complex additions and subtractions to the strategy can be plotted correctly.
+The legend description in the bar chart can be seen at the bottom of the window, and the overall color scheme and style is standard for the domestic market. The lines between open and closed positions are plotted using the First-in, First-out rule, where each transaction is automatically matched with other transactions according to its volume, so that even complex additions and subtractions to the strategy can be plotted correctly.
 
 
 ## Parameter Optimization
