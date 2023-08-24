@@ -105,7 +105,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
     * [paper_account](https://www.github.com/vnpy/vnpy_paperaccount): local simulation module, purely localized implementation of the simulation of simulation trading functions, based on the real-time quotes obtained from the trading interface for commission aggregation, to provide commission transaction push and position records
 
-    * [chart_wizard](https://www.github.com/vnpy/vnpy_chartwizard): K-line chart module, based on RQData data services (futures) or trading interface to obtain historical data, and combined with the Tick push to display real-time market changes.
+    * [chart_wizard](https://www.github.com/vnpy/vnpy_chartwizard): bar chart module, based on RQData data services (futures) or trading interface to obtain historical data, and combined with the Tick push to display real-time market changes.
 
     * [portfolio_manager](https://www.github.com/vnpy/vnpy_portfoliomanager): portfolio management module, based on independent strategy trading portfolio (sub-accounts), to provide commission transaction record management, automatic tracking of trading positions, and daily profit and loss real-time statistics Functions
 
@@ -113,7 +113,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
     * [data_manager](https://www.github.com/vnpy/vnpy_datamanager): historical data management module, through the tree directory to view the database of existing data overview, select any time period data to view the details of the field, support for CSV file data import and export
 
-    * [data_recorder](https://www.github.com/vnpy/vnpy_datarecorder): quote recording module, based on the graphical interface for configuration, according to the needs of real-time recording Tick or K-line quotes to the database, for strategy backtesting or initialization of the real market
+    * [data_recorder](https://www.github.com/vnpy/vnpy_datarecorder): quote recording module, based on the graphical interface for configuration, according to the needs of real-time recording Tick or bar quotes to the database, for strategy backtesting or initialization of the real market
 
     * [excel_rtd](https://www.github.com/vnpy/vnpy_excelrtd): Excel RTD (Real Time Data) real-time data service, based on the pyxll module to realize in Excel to get all kinds of data (quotes, contracts, positions, etc.) in real-time push updates.
 
@@ -173,7 +173,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
 8. standard component for cross-process communication (rpc) for implementing complex trading systems with distributed deployment.
 
-9. Python high-performance K-line chart (chart), support for large data volume chart display and real-time data update function.
+9. Python high-performance bar chart (chart), support for large data volume chart display and real-time data update function.
 
 10. [Community Forum](http://www.vnpy.com/forum) and [Zhihu Column](http://zhuanlan.zhihu.com/vn-py), including VeighNa project development tutorials and Python in the field of quantitative trading application research and other content.
 
