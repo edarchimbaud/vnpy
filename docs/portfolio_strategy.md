@@ -353,7 +353,7 @@ If you only trade based on on_bar, the code here can be written as:
         self.pbg = PortfolioBarGenerator(self.on_bars)
 ```
 
-Instead of passing the pbg instance the longer K-period that needs to be synthesized based on the on_bars period, and the name of the function that receives the longer K-period.
+Instead of passing the pbg instance the longer bar data that needs to be synthesized based on the on_bars period, and the name of the function that receives the longer bar data.
 
 Please note:
 

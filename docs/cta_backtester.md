@@ -49,7 +49,7 @@ A graphical backtesting interface will open, as shown below:
 
 Before starting strategy backtesting, you first need to ensure that there is enough historical data in the database, and the CtaBacktester module also provides the ability to download historical data with one click.
 
-To download the data, you need to fill in four fields: local code, K-period, start date and end date:
+To download the data, you need to fill in four fields: local code, bar data, start date and end date:
 
 <span id="jump">
 
