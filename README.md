@@ -17,7 +17,7 @@
 
 VeighNa is a Python-based open source quantitative trading system development framework, in the open source community's continuous contribution to grow step by step into a multi-functional quantitative trading platform, since its release has accumulated a large number of users from financial institutions or related fields, including private equity funds, securities firms, futures companies and so on.
 
-If you have any questions in the process of using VeighNa for secondary development (strategies, modules, etc.), please check the [**VeighNa Project Documentation**](https://edarchimbaud.com/trading-platform-veighna), and if you can't solve it, please go to the [**Official Community Forum**](https://www.vnpy.com/forum/) for help, and you are welcome to share your experience in the [Experience Sharing] section!
+If you have any questions in the process of using VeighNa for secondary development (strategies, modules, etc.), please check the [**VeighNa Project Documentation**](https://wiki.paperswithbacktest.com/glossary/veighna), and if you can't solve it, please go to the [**Official Community Forum**](https://www.vnpy.com/forum/) for help, and you are welcome to share your experience in the [Experience Sharing] section!
 
 For VeighNa's financial institution users, a special [VeighNa Institutional User Group] (QQ Group No.: 676499931) has been created to share issues related to institutional applications, such as: interbank market access, asset management O32 system, distributed deployment and other content. Please note that this group is only open to financial institution users, when adding the group, please specify: name - organization - department.
 
@@ -75,7 +75,7 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
     * Overseas Markets
 
-        * Interactive Brokers ([ib](https://www.github.com/edarchimbaud/vnpy_ib)): overseas securities, futures, options, precious metals, etc.
+        * Interactive Brokers ([ib](https://www.github.com/paperswithbacktest/vnpy_ib)): overseas securities, futures, options, precious metals, etc.
 
         * Edson 9.0 Forex ([tap](https://www.github.com/vnpy/vnpy_tap)): Overseas Futures
 
@@ -89,9 +89,9 @@ For VeighNa's financial institution users, a special [VeighNa Institutional User
 
 3. Trading applications (apps) covering the following types of quantitative strategies:
 
-    * [cta_strategy](https://github.com/edarchimbaud/vnpy_ctastrategy): CTA strategy engine module, while maintaining ease-of-use, allows users to control at a fine-grained level (to reduce slippage, realize high-frequency strategies) the reported withdrawal behavior of delegates during the operation of CTA-type strategies.
+    * [cta_strategy](https://github.com/paperswithbacktest/vnpy_ctastrategy): CTA strategy engine module, while maintaining ease-of-use, allows users to control at a fine-grained level (to reduce slippage, realize high-frequency strategies) the reported withdrawal behavior of delegates during the operation of CTA-type strategies.
 
-    * [cta_backtester](https://www.github.com/edarchimbaud/vnpy_ctabacktester): CTA strategy backtesting module, without the need to use Jupyter Notebook, directly using the graphical interface for strategy backtesting analysis, parameter optimization and other related work.
+    * [cta_backtester](https://www.github.com/paperswithbacktest/vnpy_ctabacktester): CTA strategy backtesting module, without the need to use Jupyter Notebook, directly using the graphical interface for strategy backtesting analysis, parameter optimization and other related work.
 
     * [spread_trading](https://www.github.com/vnpy/vnpy_spreadtrading): spread trading module, support for customized spreads, real-time calculation of spread quotes and positions, support for spread algorithmic trading and automated spread strategy two models
 
